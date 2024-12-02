@@ -16,3 +16,10 @@ The following **technologies will be used** in this project
 * **SW**: .NET WPF
 * **HW**: Arduino Uno R3 CH340
 * **Testing Framework**: MSTest, FakeItEasy
+### Getting Started
+---
+1. Clone the repository: git clone https://github.com/Yark13/csad2425ki406Zarytskyi07.git
+2. Flash the Arduino Uno R3: Load the server code onto the Arduino Uno R3 using Arduino IDE.
+3. Run the game:
+   * 4.1 Connect Arduino Uno R3 with loaded code.
+   * 4.2 Start the client by running Lab2csad.exe.
