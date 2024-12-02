@@ -40,7 +40,7 @@ public class PortServiceTests
     [TestMethod]
     public void ChangePort_ShouldChangeChoosenPort_PortNameIsNormal()
     {
-        const string portName = "COM1";
+        string portName = _service.ExistingPorts.First();
 
         _service.ChangePort(portName);
 

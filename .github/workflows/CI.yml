@@ -22,13 +22,14 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Client/Lab2csad/Lab2csad.sln
 
     - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build Client/Lab2csad/Lab2csad.sln --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test InfrastructureTests/InfrastructureTests.csproj --logger "trx;LogFileName=test_results.trx" --results-directory ./TestResults --collect:"XPlat Code Coverage"
+      run: dotnet test Client/Lab2csad/InfrastructureTests/InfrastructureTests.csproj --logger "trx;LogFileName=test_results.trx" --results-directory ./TestResults --collect:"XPlat Code Coverage"
+
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
