@@ -73,7 +73,7 @@ jobs:
     - name: Save HEX file
       run: |
         mkdir -p "./ci-build/server/"
-        Copy-Item "$env:GITHUB_WORKSPACE/Server/firmware/build/arduino.avr.uno/arduino.ino.hex" -Destination "./ci-build/server/server-script-arduino-uno-r3.ino.hex"
+        Copy-Item "$env:GITHUB_WORKSPACE/Server/firmware/build/arduino.avr.uno/firmware.ino.hex" -Destination "./ci-build/server/server-script-arduino-uno-r3.ino.hex"
 
     - name: Upload Arduino Uno R3 HEX Artifact
       uses: actions/upload-artifact@v3
