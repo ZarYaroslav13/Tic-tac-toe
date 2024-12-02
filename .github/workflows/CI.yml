@@ -53,15 +53,17 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup Arduino CLI
+      shell: pwsh
       run: |
-        mkdir -p $env:GITHUB_WORKSPACE/arduino-cli
-        Invoke-WebRequest -Uri https://github.com/arduino/arduino-cli/releases/download/0.31.0/arduino-cli_0.31.0_Windows_64bit.zip -OutFile arduino-cli.zip
-        Expand-Archive -Path arduino-cli.zip -DestinationPath $env:GITHUB_WORKSPACE/arduino-cli
-        $env:PATH += ";$env:GITHUB_WORKSPACE/arduino-cli"
+        mkdir -p "$env:GITHUB_WORKSPACE\arduino-cli"
+        Invoke-WebRequest -Uri "https://github.com/arduino/arduino-cli/releases/download/0.31.0/arduino-cli_0.31.0_Windows_64bit.zip" -OutFile "arduino-cli.zip"
+        Expand-Archive -Path "arduino-cli.zip" -DestinationPath "$env:GITHUB_WORKSPACE\arduino-cli"
+        $env:PATH += ";$env:GITHUB_WORKSPACE\arduino-cli"
 
-        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe config init
-        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe core update-index
-        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe core install arduino:avr
+        "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" config init
+        "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" core update-index
+        "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" core install arduino:avr
+
 
     - name: Compile Arduino code
       run: |
