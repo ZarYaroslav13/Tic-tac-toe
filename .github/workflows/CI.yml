@@ -28,11 +28,8 @@ jobs:
       run: dotnet build Client/Lab2csad/Lab2csad.sln --configuration Release --no-restore
 
     - name: Run tests
-      run: |
-        dotnet test Client/Lab2csad/InfrastructureTests/InfrastructureTests.csproj `
-        --logger "trx;LogFileName=test_results.trx" `
-        --results-directory ./TestResults `
-        --collect:"XPlat Code Coverage"
+      run: dotnet test Client/Lab2csad/InfrastructureTests/InfrastructureTests.csproj --logger "trx;LogFileName=test_results.trx" --results-directory ./TestResults --collect:"XPlat Code Coverage"
+
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
