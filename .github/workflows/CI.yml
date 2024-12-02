@@ -54,22 +54,23 @@ jobs:
 
     - name: Setup Arduino CLI
       run: |
+        mkdir -p $env:GITHUB_WORKSPACE/arduino-cli
         Invoke-WebRequest -Uri https://github.com/arduino/arduino-cli/releases/download/0.31.0/arduino-cli_0.31.0_Windows_64bit.zip -OutFile arduino-cli.zip
-        Expand-Archive -Path arduino-cli.zip -DestinationPath $env:USERPROFILE\arduino-cli
-        $env:PATH += ";$env:USERPROFILE\arduino-cli"
+        Expand-Archive -Path arduino-cli.zip -DestinationPath $env:GITHUB_WORKSPACE/arduino-cli
+        $env:PATH += ";$env:GITHUB_WORKSPACE/arduino-cli"
 
-        arduino-cli config init
-        arduino-cli core update-index
-        arduino-cli core install arduino:avr
+        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe config init
+        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe core update-index
+        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe core install arduino:avr
 
     - name: Compile Arduino code
       run: |
-        arduino-cli compile --fqbn arduino:avr:uno --output-dir "./Server" "./Server/firmware.ino"
+        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe compile --fqbn arduino:avr:uno --output-dir $env:GITHUB_WORKSPACE/Server $env:GITHUB_WORKSPACE/Server/firmware.ino
 
     - name: Save HEX file
       run: |
         mkdir -p "./ci-build/server/"
-        Copy-Item "./Server/firmware.ino.hex" -Destination "./ci-build/server/server-script-arduino-uno-r3.ino.hex"
+        Copy-Item "$env:GITHUB_WORKSPACE/Server/firmware.ino.hex" -Destination "./ci-build/server/server-script-arduino-uno-r3.ino.hex"
 
     - name: Upload Arduino Uno R3 HEX Artifact
       uses: actions/upload-artifact@v3
