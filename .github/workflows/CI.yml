@@ -67,7 +67,7 @@ jobs:
     - name: Compile Arduino code
       shell: pwsh
       run: |
-        & "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" compile --fqbn arduino:avr:uno --output-dir "$env:GITHUB_WORKSPACE\Server" "$env:GITHUB_WORKSPACE\Server\firmware.ino"
+        & "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" compile --fqbn arduino:avr:uno --output-dir "$env:GITHUB_WORKSPACE\Server\firmware" "$env:GITHUB_WORKSPACE\Server\firmware\firmware.ino"
 
 
     - name: Save HEX file
