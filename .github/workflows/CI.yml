@@ -65,8 +65,10 @@ jobs:
         & "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" core install arduino:avr
 
     - name: Compile Arduino code
+      shell: pwsh
       run: |
-        $env:GITHUB_WORKSPACE/arduino-cli/arduino-cli.exe compile --fqbn arduino:avr:uno --output-dir $env:GITHUB_WORKSPACE/Server $env:GITHUB_WORKSPACE/Server/firmware.ino
+        & "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" compile --fqbn arduino:avr:uno --output-dir "$env:GITHUB_WORKSPACE\Server" "$env:GITHUB_WORKSPACE\Server\firmware.ino"
+
 
     - name: Save HEX file
       run: |
