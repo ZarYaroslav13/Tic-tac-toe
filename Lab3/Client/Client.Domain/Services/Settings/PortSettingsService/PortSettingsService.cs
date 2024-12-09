@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Client.Domain.Services.Settings.PortSettingsService;
+
+public class PortSettingsService : IPortSettingsService
+{
+    private readonly IEnumerable<int> _portSpeeds = new List<int>() { 4800, 9600, 19200, 38400, 57600 };
+
+    private SerialPort _connectedPort;
+    private int _portSpeed = 0;
+
+    public PortSettingsService()
+    {
+        _connectedPort = new SerialPort();
+    }
+
+    public void ChangePort(string portName)
+    {
+        if (portName == null || String.IsNullOrWhiteSpace(portName))
+            throw new ArgumentNullException(nameof(portName));
+
+        try
+        {
+            if (_connectedPort.IsOpen)
+                _connectedPort.Close();
+
+            _connectedPort.PortName = portName;
+
+            _connectedPort.Open();
+        }
+        catch (Exception e)
+        {
+            
+        }
+    }
+
+    public void ChangePortSpeed(int portSpeed)
+    {
+        if (portSpeed <= 0)
+            throw new ArgumentOutOfRangeException(nameof(portSpeed));
+
+        _portSpeed = portSpeed;
+
+        _connectedPort.BaudRate = _portSpeed;
+    }
+
+    public IEnumerable<string> GetAvailablePorts()
+    {
+        return SerialPort.GetPortNames();
+    }
+
+    public IEnumerable<int> GetAvailablePortSpeeds()
+    {
+        return _portSpeeds;
+    }
+
+    public string GetPortName()
+    {
+        return _connectedPort.PortName;
+    }
+
+    public int GetPortSpeed()
+    {
+        return _portSpeed;
+    }
+}
