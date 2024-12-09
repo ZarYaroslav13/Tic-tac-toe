@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Client.Presentation.Views.Setting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Presentation.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Wheat">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "*"/>
+            <RowDefinition Height = "*"/>
+            <RowDefinition Height = "*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Port"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="0" x:Name="PortComboBox"  FontSize="30"   VerticalAlignment="Top" HorizontalAlignment="Center" Width="200"/>
+
+        <Label Grid.Row="0" Grid.Column="1" Content="Speed"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SpeedComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
+
+        <Label Grid.Row="0" Grid.Column="2" Content="Game mode"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="GameModeComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
+
+        <Button  Grid.Row="2" Grid.Column="1" x:Name="SaveButton" Content="Save" FontSize="30" Margin="50"/>
+    </Grid>
+</UserControl>

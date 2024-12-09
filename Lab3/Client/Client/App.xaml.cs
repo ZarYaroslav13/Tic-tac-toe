@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Lab2csad
+namespace Client
 {
     /// <summary>
     /// Interaction logic for App.xaml
