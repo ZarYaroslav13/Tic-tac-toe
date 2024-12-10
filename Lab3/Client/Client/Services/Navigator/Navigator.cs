@@ -1,6 +1,7 @@
-﻿using Client.Domain.ViewModels;
+﻿using Client.Domain.Services;
+using Client.Presentation.ViewModels;
 
-namespace Client.Domain.Services.Navigator;
+namespace Client.Presentation.Services.Navigator;
 
 public class Navigator : ObservableObject, INavigator
 {

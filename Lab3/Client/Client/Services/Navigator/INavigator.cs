@@ -1,6 +1,6 @@
-﻿using Client.Domain.ViewModels;
+﻿using Client.Presentation.ViewModels;
 
-namespace Client.Domain.Services.Navigator;
+namespace Client.Presentation.Services.Navigator;
 
 public interface INavigator
 {

@@ -1,8 +1,8 @@
 ﻿using Client.Domain.Services;
-using Client.Domain.Services.Navigator;
+using Client.Presentation.Services.Navigator;
 using System.Windows.Input;
 
-namespace Client.Domain.ViewModels;
+namespace Client.Presentation.ViewModels;
 
 public class HomeViewModel : BaseViewModel
 {

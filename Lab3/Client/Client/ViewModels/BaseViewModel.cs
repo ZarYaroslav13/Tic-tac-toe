@@ -1,7 +1,7 @@
 ﻿using Client.Domain.Services;
-using Client.Domain.Services.Navigator;
+using Client.Presentation.Services.Navigator;
 
-namespace Client.Domain.ViewModels;
+namespace Client.Presentation.ViewModels;
 
 public class BaseViewModel : ObservableObject
 {
