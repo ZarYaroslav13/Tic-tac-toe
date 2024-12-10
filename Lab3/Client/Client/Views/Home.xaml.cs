@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Client.Presentation.Views
 {
     /// <summary>
-    /// Interaction logic for Menu.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Menu : UserControl
+    public partial class Home : UserControl
     {
-        public Menu()
+        public Home()
         {
             InitializeComponent();
         }
