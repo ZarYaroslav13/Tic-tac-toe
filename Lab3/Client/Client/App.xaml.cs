@@ -1,4 +1,5 @@
 ﻿using Client.Domain.ViewModels;
+using Client.Presentation.HostBuilders;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using System.Data;
@@ -27,6 +28,10 @@ public partial class App : Application
 
     private static IHostBuilder CreateHostBuilder(string[] args = null)
     {
-        return Host.CreateDefaultBuilder(args);
+        return Host.CreateDefaultBuilder(args)
+            .AddConfiguration()
+            .AddServices()
+            .AddViewModels()
+            .AddViews();
     }
 }
