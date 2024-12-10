@@ -13,4 +13,5 @@ public class ViewModelLocator
 
     public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
     public HomeViewModel HomeViewModel => _serviceProvider.GetRequiredService<HomeViewModel>();
+    public SettingsViewModel SettingsViewModel => _serviceProvider.GetRequiredService<SettingsViewModel>();
 }
