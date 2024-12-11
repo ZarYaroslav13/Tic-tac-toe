@@ -97,10 +97,16 @@ public class GameService : IGameService
         return null;
     }
 
+    public void SendRequestForAIMove()
+    {
+        GetServerPort().Write(_gameState.GetServerBoardString());
+    }
+
     public void AddReceivedEventHandler(SerialDataReceivedEventHandler handler)
     {
         ArgumentNullException.ThrowIfNull(handler);
 
         _settings.GetPortSettings().AddSerialDataReceivedEventHandler(handler);
     }
+
 }

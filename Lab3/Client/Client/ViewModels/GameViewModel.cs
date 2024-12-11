@@ -34,6 +34,7 @@ public class GameViewModel : BaseViewModel
         _gameService.StartGame();
         _gameService.AddReceivedEventHandler(new(GetMoveFromAI));
         ChangeBoardView(_gameState);
+
     }
     #endregion
 

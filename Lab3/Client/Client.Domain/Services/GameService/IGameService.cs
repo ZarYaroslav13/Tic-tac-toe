@@ -15,5 +15,7 @@ public interface IGameService
 
     public bool? IsWinner();
 
+    public void SendRequestForAIMove();
+
     public void AddReceivedEventHandler(SerialDataReceivedEventHandler handler);
 }
