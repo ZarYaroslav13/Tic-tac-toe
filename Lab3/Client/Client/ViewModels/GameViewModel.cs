@@ -15,9 +15,9 @@ public class GameViewModel : BaseViewModel
 {
     public ObservableCollection<ObservableCollection<BitmapImage>> BoardImages { get; set; } = new()
     {
-        new ObservableCollection<BitmapImage> { new BitmapImage(), new BitmapImage(), new BitmapImage() },
-        new ObservableCollection<BitmapImage> { new BitmapImage(), new BitmapImage(), new BitmapImage() },
-        new ObservableCollection<BitmapImage> { new BitmapImage(), new BitmapImage(), new BitmapImage() }
+        new() { new(), new(), new() },
+        new() { new(), new(), new() },
+        new() { new(), new(), new() }
     };
 
     private readonly IGameService _gameService;
@@ -28,7 +28,7 @@ public class GameViewModel : BaseViewModel
     private void OnStartNewGameCommandExecuted(object o)
     {
         _gameService.StartGame();
-        ChangeBoard(_gameService.GetGameState());
+        ChangeBoardView(_gameService.GetGameState());
     }
     #endregion
 
@@ -46,6 +46,9 @@ public class GameViewModel : BaseViewModel
     public ICommand CellClickedCommand => _cellClickedCommand ??= new RelayCommand(OnCellClickedCommandExecuted);
     private void OnCellClickedCommandExecuted(object o)
     {
+        if(_gameService.GetGameState().Status != GameStatus.Ongoing)
+            return;
+
         if (o == null || o.GetType() != typeof(string))
             throw new ArgumentException(nameof(o));
 
@@ -53,7 +56,9 @@ public class GameViewModel : BaseViewModel
         int row = (int)char.GetNumericValue(move[0]);
         int column = (int)char.GetNumericValue(move[1]);
 
-        ChangeBoard(_gameService.Move(row, column));
+        ChangeBoardView(_gameService.Move(row, column));
+
+        CheckWinner();
     }
     #endregion
 
@@ -62,7 +67,7 @@ public class GameViewModel : BaseViewModel
         _gameService = service ?? throw new ArgumentNullException(nameof(service));
     }
 
-    private void ChangeBoard(GameState state)
+    private void ChangeBoardView(GameState state)
     {
         var DefaultCellPath = (BitmapImage)Application.Current.Resources["DefaultCell"];
         var CrossCellPath = (BitmapImage)Application.Current.Resources["CrosstCell"];
@@ -76,5 +81,11 @@ public class GameViewModel : BaseViewModel
                 BoardImages[i][j] = image;
             }
         }   
+    }
+
+    private void CheckWinner()
+    {
+        if (_gameService.IsWinner() != null)
+            MessageBox.Show("Player"+((_gameService.IsWinner()==true)?"X":"O")+" WON!!!!");
     }
 }

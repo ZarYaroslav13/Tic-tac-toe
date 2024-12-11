@@ -10,6 +10,6 @@ public enum GameStatus
 {
     Ongoing,
     Draw,
-    WinPlayerX,
-    WinPlayerY
+    WonPlayerX,
+    WonPlayerO
 }
