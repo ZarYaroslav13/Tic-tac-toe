@@ -27,7 +27,13 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Game">
-                <MenuItem Header="_New"/>
+                <MenuItem Header="_New">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding StartNewGameCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
                 <MenuItem Header="_Save"/>
                 <MenuItem Header="_Load"/>
             </MenuItem>
