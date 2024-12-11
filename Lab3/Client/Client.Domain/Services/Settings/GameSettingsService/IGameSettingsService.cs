@@ -2,6 +2,8 @@
 
 public interface IGameSettingsService
 {
+    public IEnumerable<string> GetAvaiableGameModes();
+
     public GameMode GetGameMode();
 
     public void ChangeGameMode(GameMode mode);

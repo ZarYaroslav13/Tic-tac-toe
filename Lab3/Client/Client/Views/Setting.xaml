@@ -22,14 +22,14 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Port"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
-        <ComboBox Grid.Row="1" Grid.Column="0" x:Name="PortComboBox"  FontSize="30"   VerticalAlignment="Top" HorizontalAlignment="Center" Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="0" x:Name="PortComboBox" ItemsSource="{Binding Ports}" SelectedItem="{Binding SelectedPort}"  FontSize="30"   VerticalAlignment="Top" HorizontalAlignment="Center" Width="200"/>
 
         <Label Grid.Row="0" Grid.Column="1" Content="Speed"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SpeedComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SpeedComboBox" ItemsSource="{Binding PortSpeeds}" SelectedItem="{Binding SelectedPortSpeed}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
 
         <Label Grid.Row="0" Grid.Column="2" Content="Game mode"  FontSize="30" VerticalAlignment="Bottom"  HorizontalContentAlignment="Center" Width="200"/>
-        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="GameModeComboBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
+        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="GameModeComboBox" ItemsSource="{Binding GameModes}" SelectedItem="{Binding SelectedGameMode}" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"  Width="200"/>
 
-        <Button  Grid.Row="2" Grid.Column="1" x:Name="SaveButton" Content="Save" FontSize="30" Margin="50"/>
+        <Button  Grid.Row="2" Grid.Column="1" x:Name="SaveButton" Command="{Binding OpenHomePageCommand}" Content="Save" FontSize="30" Margin="50"/>
     </Grid>
 </UserControl>

@@ -33,15 +33,15 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="0" x:Name="Cell00" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="0" Grid.Column="1" x:Name="Cell01" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="0" Grid.Column="2" x:Name="Cell02" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="1" Grid.Column="0" x:Name="Cell10" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="1" Grid.Column="1" x:Name="Cell11" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="1" Grid.Column="2" x:Name="Cell12" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="2" Grid.Column="0" x:Name="Cell20" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="2" Grid.Column="1" x:Name="Cell21" Source="{StaticResource DefaultCell }" Margin="10"/>
-            <Image Grid.Row="2" Grid.Column="2" x:Name="Cell22" Source="{StaticResource DefaultCell }" Margin="10"/>
+            <Image Grid.Row="0" Grid.Column="0" x:Name="Cell00" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="0" Grid.Column="1" x:Name="Cell01" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="0" Grid.Column="2" x:Name="Cell02" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="1" Grid.Column="0" x:Name="Cell10" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="1" Grid.Column="1" x:Name="Cell11" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="1" Grid.Column="2" x:Name="Cell12" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="2" Grid.Column="0" x:Name="Cell20" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="2" Grid.Column="1" x:Name="Cell21" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+            <Image Grid.Row="2" Grid.Column="2" x:Name="Cell22" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
         </Grid>
     </Grid>
 </UserControl>

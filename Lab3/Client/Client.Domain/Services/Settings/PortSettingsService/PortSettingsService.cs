@@ -12,6 +12,7 @@ public class PortSettingsService : IPortSettingsService
     public PortSettingsService()
     {
         _connectedPort = new SerialPort();
+        _connectedPort.PortName = "-";
     }
 
     public void ChangePort(string portName)
@@ -19,19 +20,12 @@ public class PortSettingsService : IPortSettingsService
         if (portName == null || String.IsNullOrWhiteSpace(portName))
             throw new ArgumentNullException(nameof(portName));
 
-        try
-        {
-            if (_connectedPort.IsOpen)
-                _connectedPort.Close();
+        if (_connectedPort.IsOpen)
+            _connectedPort.Close();
 
-            _connectedPort.PortName = portName;
+        _connectedPort.PortName = portName;
 
-            _connectedPort.Open();
-        }
-        catch (Exception e)
-        {
-
-        }
+        _connectedPort.Open();
     }
 
     public void ChangePortSpeed(int portSpeed)

@@ -1,5 +1,4 @@
 ﻿using Client.Presentation.HostBuilders;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
 
