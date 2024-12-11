@@ -2,6 +2,7 @@
 using Client.Domain.Services.GameService;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;
+using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Presentation.Services.Navigator;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -21,6 +22,7 @@ public class GameViewModel : BaseViewModel
     };
 
     private readonly IGameService _gameService;
+    private GameState _gameState => _gameService.GetGameState();
 
     #region Start new game
     private ICommand _startNewGameCommand = default!;
@@ -28,7 +30,7 @@ public class GameViewModel : BaseViewModel
     private void OnStartNewGameCommandExecuted(object o)
     {
         _gameService.StartGame();
-        ChangeBoardView(_gameService.GetGameState());
+        ChangeBoardView(_gameState);
     }
     #endregion
 
@@ -46,25 +48,38 @@ public class GameViewModel : BaseViewModel
     public ICommand CellClickedCommand => _cellClickedCommand ??= new RelayCommand(OnCellClickedCommandExecuted);
     private void OnCellClickedCommandExecuted(object o)
     {
-        if(_gameService.GetGameState().Status != GameStatus.Ongoing)
+        if(_gameState.Status != GameStatus.Ongoing)
+            return;
+
+        if(_gameState.Mode == GameMode.AIvsAI)
+            return;
+
+        bool queryAI = (_gameState.XNumber > _gameState.ONumber && _gameState.ManPlayer == true) 
+                    || (_gameState.XNumber == _gameState.ONumber && _gameState.ManPlayer == false);
+        if (_gameState.Mode == GameMode.ManvsAI && queryAI)
             return;
 
         if (o == null || o.GetType() != typeof(string))
             throw new ArgumentException(nameof(o));
 
         string move = o as string;
-        int row = (int)char.GetNumericValue(move[0]);
-        int column = (int)char.GetNumericValue(move[1]);
-
-        ChangeBoardView(_gameService.Move(row, column));
-
-        CheckWinner();
+        ManMakeMove(move);
     }
     #endregion
 
     public GameViewModel(INavigator navigator, IGameService service) : base(navigator)
     {
         _gameService = service ?? throw new ArgumentNullException(nameof(service));
+    }
+
+    private void ManMakeMove(string move)
+    {
+        int row = (int)char.GetNumericValue(move[0]);
+        int column = (int)char.GetNumericValue(move[1]);
+
+        ChangeBoardView(_gameService.Move(row, column));
+
+        CheckWinner();
     }
 
     private void ChangeBoardView(GameState state)
@@ -88,7 +103,7 @@ public class GameViewModel : BaseViewModel
         if (_gameService.IsWinner() != null)
             MessageBox.Show("Player"+((_gameService.IsWinner()==true)?"X":"O")+" WON!!!!");
 
-        if (_gameService.GetGameState().Status == GameStatus.Draw)
+        if (_gameState.Status == GameStatus.Draw)
             MessageBox.Show("DRAW!!!!");
     }
 }
