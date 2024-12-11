@@ -9,14 +9,16 @@ namespace Client.Domain.Services.GameService;
 
 public struct GameState
 {
-    public int[,] Board;
+    public bool?[,] Board;
+    public int XNumber => Board.Cast<bool?>().Count(c => c == true);
+    public int ONumber => Board.Cast<bool?>().Count(c => c == false);
     public GameMode Mode;
     public GameStatus Status;
-    public bool ManPlayer;
+    public bool? ManPlayer;
 
     public GameState()
     {
-        Board = new int[3,3];
+        Board = new bool?[3,3];
         Mode = GameMode.None;
         Status = GameStatus.Ongoing;
     }

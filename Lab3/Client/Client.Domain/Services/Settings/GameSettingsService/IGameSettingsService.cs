@@ -6,6 +6,10 @@ public interface IGameSettingsService
 
     public GameMode GetGameMode();
 
+    public bool? GetManPlayerSide();
+
+    public void SetManPlayerSide(bool? value);
+
     public void ChangeGameMode(GameMode mode);
 
     public bool IsAllSettingSet();
