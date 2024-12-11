@@ -6,6 +6,8 @@ public class PortSettingsService : IPortSettingsService
 {
     private readonly IEnumerable<int> _portSpeeds = new List<int>() { 4800, 9600, 19200, 38400, 57600 };
 
+
+    public SerialPort ConnectedPort => _connectedPort;
     private SerialPort _connectedPort;
     private int _portSpeed = 0;
 
@@ -61,5 +63,10 @@ public class PortSettingsService : IPortSettingsService
     public bool IsAllSettingSet()
     {
         return _connectedPort.IsOpen && _portSpeed > 0;
+    }
+
+    public void AddSerialDataReceivedEventHandler(SerialDataReceivedEventHandler handler)
+    {
+        _connectedPort.DataReceived += handler ?? throw new ArgumentNullException(nameof(handler));
     }
 }

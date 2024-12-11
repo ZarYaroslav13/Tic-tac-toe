@@ -5,10 +5,12 @@ using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Presentation.Services.Navigator;
 using System.Collections.ObjectModel;
+using System.IO.Ports;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Client.Presentation.ViewModels;
 
@@ -30,6 +32,7 @@ public class GameViewModel : BaseViewModel
     private void OnStartNewGameCommandExecuted(object o)
     {
         _gameService.StartGame();
+        _gameService.AddReceivedEventHandler(new(GetMoveFromAI));
         ChangeBoardView(_gameState);
     }
     #endregion
@@ -63,7 +66,8 @@ public class GameViewModel : BaseViewModel
             throw new ArgumentException(nameof(o));
 
         string move = o as string;
-        ManMakeMove(move);
+
+        MakeMove(move);
     }
     #endregion
 
@@ -72,7 +76,7 @@ public class GameViewModel : BaseViewModel
         _gameService = service ?? throw new ArgumentNullException(nameof(service));
     }
 
-    private void ManMakeMove(string move)
+    private void MakeMove(string move)
     {
         int row = (int)char.GetNumericValue(move[0]);
         int column = (int)char.GetNumericValue(move[1]);
@@ -105,5 +109,15 @@ public class GameViewModel : BaseViewModel
 
         if (_gameState.Status == GameStatus.Draw)
             MessageBox.Show("DRAW!!!!");
+    }
+
+    private void GetMoveFromAI(object sender, SerialDataReceivedEventArgs e)
+    {
+        string strForReceive = String.Empty;
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            strForReceive = _gameService.GetServerPort().ReadLine();
+            MakeMove(strForReceive);
+        });
     }
 }

@@ -3,6 +3,7 @@ using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ public class GameService : IGameService
         if(_gameState.Mode == GameMode.ManvsAI)
             _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();
     }
+
+    public SerialPort GetServerPort() => _settings.GetPortSettings().ConnectedPort;
 
     public GameState GetGameState()
     {
@@ -92,5 +95,12 @@ public class GameService : IGameService
         }
 
         return null;
+    }
+
+    public void AddReceivedEventHandler(SerialDataReceivedEventHandler handler)
+    {
+        ArgumentNullException.ThrowIfNull(handler);
+
+        _settings.GetPortSettings().AddSerialDataReceivedEventHandler(handler);
     }
 }
