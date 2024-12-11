@@ -1,6 +1,6 @@
 ﻿namespace Client.Domain.Services.ServerService;
 
-public interface IServerService
+public interface IGameService
 {
-
+    public void Move();
 }

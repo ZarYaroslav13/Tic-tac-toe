@@ -1,6 +1,6 @@
 ﻿namespace Client.Domain.Services.ServerService;
 
-public enum ServerCommand
+public enum GameCommand
 {
     NewGame,
     LoadGame,
