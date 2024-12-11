@@ -24,11 +24,11 @@ public class HomeViewModel : BaseViewModel
     public ICommand OpenGameCommand => _openGameCommand ??= new RelayCommand(OnOpenGameCommandExecuted);
     private void OnOpenGameCommandExecuted(object o)
     {
-        if (!_settings.IsAllSettingSet())
-        {
-            MessageBox.Show("You have not set all setting, i cannot start game!!");
-            return;
-        }
+        //if (!_settings.IsAllSettingSet())
+        //{
+        //    MessageBox.Show("You have not set all setting, i cannot start game!!");
+        //    return;
+        //}
 
         Navigator.NavigateTo<GameViewModel>();
     }
