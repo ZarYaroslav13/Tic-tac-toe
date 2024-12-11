@@ -16,4 +16,14 @@ public class GameService : IGameService
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
     }
+
+    public Game.GameState Move(int row, int column)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void StartGame(int[,] viewBoard)
+    {
+        throw new NotImplementedException();
+    }
 }

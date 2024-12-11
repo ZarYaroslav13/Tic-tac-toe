@@ -1,6 +1,12 @@
-﻿namespace Client.Domain.Services.ServerService;
+﻿using Client.Domain.Game;
+
+namespace Client.Domain.Services.ServerService;
 
 public interface IGameService
 {
-    public void Move();
+    public void StartGame(int[,] viewBoard);
+
+    public GameState Move(int row, int column);
+    
+
 }

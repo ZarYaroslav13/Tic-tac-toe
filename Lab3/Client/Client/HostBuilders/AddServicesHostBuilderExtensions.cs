@@ -1,4 +1,6 @@
-﻿using Client.Domain.Services.Settings;
+﻿using Client.Domain.Services.GameService;
+using Client.Domain.Services.ServerService;
+using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Domain.Services.Settings.PortSettingsService;
 using Client.Presentation.Services.Navigator;
@@ -18,6 +20,7 @@ internal static class AddServicesHostBuilderExtensions
             services.AddSingleton<IGameSettingsService, GameSettingsService>();
             services.AddSingleton<IPortSettingsService, PortSettingsService>();
             services.AddSingleton<ISettingsService, SettingsService>();
+            services.AddSingleton<IGameService, GameService>();
             services.AddScoped<Func<Type, BaseViewModel>>(serviceProvider => viewModelType => (BaseViewModel)serviceProvider.GetRequiredService(viewModelType));
         });
 

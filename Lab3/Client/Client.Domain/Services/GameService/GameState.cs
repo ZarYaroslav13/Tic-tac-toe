@@ -13,4 +13,11 @@ public struct GameState
     public GameMode Mode;
     public GameStatus Status;
     public bool ManPlayer;
+
+    public GameState()
+    {
+        Board = new int[3,3];
+        Mode = GameMode.None;
+        Status = GameStatus.Ongoing;
+    }
 }
