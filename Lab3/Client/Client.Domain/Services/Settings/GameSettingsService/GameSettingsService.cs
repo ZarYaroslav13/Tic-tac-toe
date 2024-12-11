@@ -4,7 +4,7 @@ public class GameSettingsService : IGameSettingsService
 {
     private GameMode _currentGameMode = GameMode.None;
 
-    private bool? _manPlayerSide;
+    private bool? _manPlayerSide = null;
 
     public IEnumerable<string> GetAvaiableGameModes() => Enum.GetNames(typeof(GameMode));
 
@@ -20,7 +20,7 @@ public class GameSettingsService : IGameSettingsService
 
     public bool IsAllSettingSet()
     {
-        return _currentGameMode != GameMode.None;
+        return !(_currentGameMode == GameMode.None || (_currentGameMode == GameMode.ManvsAI && _manPlayerSide == null));
     }
 
     public bool? GetManPlayerSide()

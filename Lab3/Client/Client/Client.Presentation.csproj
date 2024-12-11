@@ -10,18 +10,26 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\CrossCell.png" />
+    <None Remove="Resources\Images\CrossPlayer.png" />
     <None Remove="Resources\Images\DefaultCell.png" />
     <None Remove="Resources\Images\ZeroCell.png" />
+    <None Remove="Resources\Images\ZeroPlayer.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Images\CrossCell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\CrossPlayer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\DefaultCell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\ZeroCell.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\ZeroPlayer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

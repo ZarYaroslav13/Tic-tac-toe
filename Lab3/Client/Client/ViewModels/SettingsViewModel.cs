@@ -26,6 +26,10 @@ public class SettingsViewModel : BaseViewModel
     public string SelectedGameMode { get => _selectedGameMode; set => _selectedGameMode = value; }
     private string _selectedGameMode;
 
+    private bool? _selectedPlayerSide { get => _gameSettings.GetManPlayerSide(); }
+    public double OpacityXSide => (_selectedPlayerSide == true) ? 0.8 : 0;
+    public double OpacityOSide => (_selectedPlayerSide == false) ? 0.8 : 0;
+
     #region Save settings
     private ICommand _openHomePageCommand = default!;
     public ICommand OpenHomePageCommand => _openHomePageCommand ??= new RelayCommand(OnOpenHomeCommandExecuted);
@@ -38,6 +42,23 @@ public class SettingsViewModel : BaseViewModel
         Navigator.NavigateTo<HomeViewModel>();
     }
     #endregion
+
+    #region Change player side
+    private ICommand _changeSelectedPlayerSideCommand = default!;
+    public ICommand ChangeSelectedPlayerSideCommand => _changeSelectedPlayerSideCommand ??= new RelayCommand(_changeSelectedPlayerSideCommandExecuted);
+    private void _changeSelectedPlayerSideCommandExecuted(object o)
+    {
+        if (o == null || o.GetType() != typeof(string))
+            throw new ArgumentNullException(nameof(o));
+
+        bool? selectedSide = (o.ToString().ToLower()[0] == 'x') ? true : false;
+
+        _gameSettings.SetManPlayerSide(selectedSide);
+        OnPropertyChanged(nameof(OpacityXSide));
+        OnPropertyChanged(nameof(OpacityOSide));
+    }
+    #endregion
+
 
     public SettingsViewModel(INavigator navigator, ISettingsService settings) : base(navigator)
     {
