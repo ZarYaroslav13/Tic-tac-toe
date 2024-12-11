@@ -15,8 +15,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Button x:Name="PlayButton" Grid.Row="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Content="New game" FontSize="40"/>
-        <Button x:Name="SettingButton" Grid.Row="2" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Center" Content="Setting" FontSize="40"/>
+        
+        <Button x:Name="PlayButton" Grid.Row="1" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Content="New game" FontSize="40" Command="{Binding OpenGameCommand}"/>
+        <Button x:Name="SettingButton" Grid.Row="2" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Center" Content="Setting" FontSize="40" Command="{Binding OpenSettingsCommand}"/>
     </Grid>
 </UserControl>

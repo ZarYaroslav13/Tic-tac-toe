@@ -16,6 +16,12 @@ public class HomeViewModel : BaseViewModel
     #endregion
 
     #region Play game
+    private ICommand _openGameCommand = default!;
+    public ICommand OpenGameCommand => _openGameCommand ??= new RelayCommand(OnOpenGameCommandExecuted);
+    private void OnOpenGameCommandExecuted(object o)
+    {
+        Navigator.NavigateTo<GameViewModel>();
+    }
     #endregion
     public HomeViewModel(INavigator navigator) : base(navigator)
     {

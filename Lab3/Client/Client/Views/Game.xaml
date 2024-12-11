@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Client.Presentation.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Wheat">
+             Background="Wheat"
+             DataContext="{Binding Source={StaticResource Locator}, Path=GameViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
