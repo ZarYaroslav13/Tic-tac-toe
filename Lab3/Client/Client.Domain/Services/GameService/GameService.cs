@@ -22,8 +22,8 @@ public class GameService : IGameService
         throw new NotImplementedException();
     }
 
-    public void StartGame(int[,] viewBoard)
+    public void StartGame()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

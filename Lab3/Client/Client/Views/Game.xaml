@@ -38,7 +38,7 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <Grid Grid.Column="1" Grid.Row="1">
 
                 <Grid.ColumnDefinitions>
@@ -52,15 +52,69 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="0" x:Name="Cell00" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="0" Grid.Column="1" x:Name="Cell01" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="0" Grid.Column="2" x:Name="Cell02" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="1" Grid.Column="0" x:Name="Cell10" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="1" Grid.Column="1" x:Name="Cell11" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="1" Grid.Column="2" x:Name="Cell12" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="2" Grid.Column="0" x:Name="Cell20" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="2" Grid.Column="1" x:Name="Cell21" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
-                <Image Grid.Row="2" Grid.Column="2" x:Name="Cell22" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand"/>
+                <Image Grid.Row="0" Grid.Column="0" x:Name="Cell00" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="00"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="1" x:Name="Cell01" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="01"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="2" x:Name="Cell02" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="02"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="1" Grid.Column="0" x:Name="Cell10" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="10"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="1" Grid.Column="1" x:Name="Cell11" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="11"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="1" Grid.Column="2" x:Name="Cell12" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="12"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="2" Grid.Column="0" x:Name="Cell20" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="20"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="2" Grid.Column="1" x:Name="Cell21" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="21"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <Image Grid.Row="2" Grid.Column="2" x:Name="Cell22" Source="{StaticResource DefaultCell }" Margin="10" Cursor="Hand">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding CellClickedCommand}" CommandParameter="22"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
             </Grid>
         </Grid>
     </StackPanel>
