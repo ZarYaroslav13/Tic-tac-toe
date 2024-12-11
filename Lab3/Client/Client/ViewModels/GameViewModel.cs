@@ -87,5 +87,8 @@ public class GameViewModel : BaseViewModel
     {
         if (_gameService.IsWinner() != null)
             MessageBox.Show("Player"+((_gameService.IsWinner()==true)?"X":"O")+" WON!!!!");
+
+        if (_gameService.GetGameState().Status == GameStatus.Draw)
+            MessageBox.Show("DRAW!!!!");
     }
 }

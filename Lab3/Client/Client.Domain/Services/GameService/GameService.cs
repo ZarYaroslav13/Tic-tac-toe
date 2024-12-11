@@ -60,7 +60,7 @@ public class GameService : IGameService
             _gameState.Status = (IsWinner() == true) ? GameStatus.WonPlayerX : GameStatus.WonPlayerO;
         }
 
-        if (_gameState.XNumber == maxXNumber && IsWinner() != null)
+        if (_gameState.XNumber == maxXNumber && IsWinner() == null)
             _gameState.Status = GameStatus.Draw;
     }
 
