@@ -13,4 +13,6 @@ public interface IPortSettingsService
     public void ChangePort(string portName);
 
     public void ChangePortSpeed(int portSpeed);
+
+    public bool IsAllSettingSet();
 }

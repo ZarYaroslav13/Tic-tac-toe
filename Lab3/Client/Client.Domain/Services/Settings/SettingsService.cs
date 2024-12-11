@@ -17,4 +17,9 @@ public class SettingsService : ISettingsService
     public IGameSettingsService GetGameSettings() => _gameSettingsService;
 
     public IPortSettingsService GetPortSettings() => _portSettingsService;
+
+    public bool IsAllSettingSet()
+    {
+        return _gameSettingsService.IsAllSettingSet() && _portSettingsService.IsAllSettingSet();
+    }
 }

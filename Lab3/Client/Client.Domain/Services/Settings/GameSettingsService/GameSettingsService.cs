@@ -3,7 +3,7 @@
 public class GameSettingsService : IGameSettingsService
 {
     public GameMode GameMode { get => GetGameMode(); set => ChangeGameMode(value); }
-    private GameMode _currentGameMode;
+    private GameMode _currentGameMode = GameMode.None;
 
     public IEnumerable<string> GetAvaiableGameModes() => Enum.GetNames(typeof(GameMode));
 
@@ -15,5 +15,10 @@ public class GameSettingsService : IGameSettingsService
     public void ChangeGameMode(GameMode mode)
     {
         _currentGameMode = mode;
+    }
+
+    public bool IsAllSettingSet()
+    {
+        return _currentGameMode != GameMode.None;
     }
 }

@@ -7,4 +7,6 @@ public interface IGameSettingsService
     public GameMode GetGameMode();
 
     public void ChangeGameMode(GameMode mode);
+
+    public bool IsAllSettingSet();
 }

@@ -8,4 +8,6 @@ public interface ISettingsService
     public IGameSettingsService GetGameSettings();
 
     public IPortSettingsService GetPortSettings();
+
+    public bool IsAllSettingSet();
 }

@@ -57,4 +57,9 @@ public class PortSettingsService : IPortSettingsService
     {
         return _portSpeed;
     }
+
+    public bool IsAllSettingSet()
+    {
+        return _connectedPort.IsOpen && _portSpeed > 0;
+    }
 }

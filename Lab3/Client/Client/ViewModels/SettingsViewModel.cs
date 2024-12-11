@@ -45,6 +45,10 @@ public class SettingsViewModel : BaseViewModel
 
         _gameSettings = _settings.GetGameSettings() ?? throw new ArgumentNullException(nameof(_settings.GetGameSettings));
         _portSettings = _settings.GetPortSettings() ?? throw new ArgumentNullException(nameof(_settings.GetPortSettings));
+
+        _selectedPortName = _portSettings.GetPortName();
+        _selectedPortSpeed = _portSettings.GetPortSpeed();
+        _selectedGameMode = _gameSettings.GetGameMode().ToString();
     }
 
     private void ChangePort(string portName)

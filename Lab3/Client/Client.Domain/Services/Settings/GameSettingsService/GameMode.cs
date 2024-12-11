@@ -2,6 +2,7 @@
 
 public enum GameMode
 {
+    None,
     ManvsMan,
     ManvsAI,
     AIvsAI
