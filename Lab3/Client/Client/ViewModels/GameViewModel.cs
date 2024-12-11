@@ -32,6 +32,15 @@ public class GameViewModel : BaseViewModel
     }
     #endregion
 
+    #region Return to home page
+    private ICommand _returnToHomePageCommand = default!;
+    public ICommand ReturnToHomePageCommand => _returnToHomePageCommand ??= new RelayCommand(OnReturnToHomePageCommandExecuted);
+    private void OnReturnToHomePageCommandExecuted(object o)
+    {
+        Navigator.NavigateTo<HomeViewModel>();
+    }
+    #endregion
+
     #region Try move
     private ICommand _cellClickedCommand = default!;
     public ICommand CellClickedCommand => _cellClickedCommand ??= new RelayCommand(OnCellClickedCommandExecuted);
@@ -66,7 +75,6 @@ public class GameViewModel : BaseViewModel
                 var image = (state.Board[i, j] == null) ? DefaultCellPath : (state.Board[i, j] == true) ? CrossCellPath : ZeroCellPath;
                 BoardImages[i][j] = image;
             }
-        }
-            
+        }   
     }
 }
