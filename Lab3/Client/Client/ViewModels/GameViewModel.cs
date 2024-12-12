@@ -31,7 +31,6 @@ public class GameViewModel : BaseViewModel
     public ICommand StartNewGameCommand => _startNewGameCommand ??= new RelayCommand(OnStartNewGameCommandExecuted);
     private void OnStartNewGameCommandExecuted(object o)
     {
-        _gameService.AddReceivedEventHandler(new(GotMoveFromAI));
         _gameService.StartGame();
         ChangeBoardView(_gameState);
 
@@ -79,6 +78,8 @@ public class GameViewModel : BaseViewModel
     public GameViewModel(INavigator navigator, IGameService service) : base(navigator)
     {
         _gameService = service ?? throw new ArgumentNullException(nameof(service));
+
+        _gameService.AddReceivedEventHandler(new(GotMoveFromAI));
     }
 
     private void MakeMove(string move)
