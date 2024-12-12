@@ -158,9 +158,8 @@ String GenerateMoveX(){
   case 2:
     move = MoveXStep2();
     break;
-    move = MoveXStep3();
   case 3:
-
+    move = MoveXStep3();
     break;
   default:
     Cell randomCell = board.RandFreeCell();
