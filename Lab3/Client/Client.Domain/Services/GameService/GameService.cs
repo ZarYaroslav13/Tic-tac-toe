@@ -140,6 +140,6 @@ public class GameService : IGameService
 
     private void SaveGameCommand()
     {
-
+        _storageManager.SaveGame(_gameState);
     }
 }
