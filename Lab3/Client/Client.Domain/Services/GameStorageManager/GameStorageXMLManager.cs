@@ -1,23 +1,19 @@
 ﻿using Client.Domain.Services.GameService.State;
 using Client.Domain.Services.IStorageManager;
-using Microsoft.Win32;
-using System;
 using System.IO;
-using System.Windows.Forms;
-using System.Windows.Shapes;
 using System.Xml.Serialization;
 
 namespace Client.Domain.Services.GameStorageManager;
 
 public class GameStorageXMLManager : IGameStorageManager
 {
-    readonly string defaultFolder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Client\Games"));
+    private readonly string _defaultFolder = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Client\Games"));
 
     public GameState LoadGame()
     {
         GameStateXML readedState = new();
         string f = Directory.GetCurrentDirectory();
-        string path = GetPath(defaultFolder, false);
+        string path = GetPath(_defaultFolder, false);
         XmlSerializer serializer = new XmlSerializer(typeof(GameStateXML));
         using (StreamReader reader = new StreamReader(path))
         {
@@ -29,55 +25,54 @@ public class GameStorageXMLManager : IGameStorageManager
     public void SaveGame(GameState game)
     {
         GameStateXML state = new(game);
-        string path = GetPath(defaultFolder);
+        string path = GetPath(_defaultFolder);
 
         XmlSerializer serializer = new XmlSerializer(typeof(GameStateXML));
         using (StreamWriter writer = new StreamWriter(path))
         {
-            serializer.Serialize(writer, this);
+            serializer.Serialize(writer, state);
         }
     }
 
-    private string GetPath(string defaultPath = "", bool getFolderPath = true)
+    private string GetPath(string defaultPath = "", bool saveFile = true)
     {
         string path = String.IsNullOrEmpty(defaultPath) ? "C:\\" : defaultPath;
 
-        return getFolderPath ? GetFolderPath(path) : GetFilePath(path);
+        return saveFile? GetPathToSaveXml(path): GetPathToLoadXml(path);
     }
 
-    private string GetFolderPath(string defaultPath)
+    public static string GetPathToSaveXml(string defaultPath)
     {
-        string path = defaultPath;
-
-        using (var folderDialog = new FolderBrowserDialog())
+        var saveFileDialog = new SaveFileDialog
         {
-            folderDialog.SelectedPath = path;
+            Title = "Save XML File",
+            Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*",
+            DefaultExt = "xml",
+            InitialDirectory = defaultPath
+        };
 
-            if (folderDialog.ShowDialog() == DialogResult.OK)
-            {
-                path = folderDialog.SelectedPath;
-            }
+        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            return saveFileDialog.FileName;
         }
 
-        return path;
+        return null;
     }
 
-    private string GetFilePath(string defaultPath)
+    public static string GetPathToLoadXml(string defaultPath)
     {
-        Microsoft.Win32.OpenFileDialog fileDialog = new();
-        string path = defaultPath;
-
-        fileDialog.InitialDirectory = path;
-        fileDialog.DefaultExt = ".xml";
-        fileDialog.Filter = "xml files (*.csv)|*.xml";
-        fileDialog.FilterIndex = 1;
-        fileDialog.RestoreDirectory = true;
-
-        if (fileDialog.ShowDialog() == true)
+        var openFileDialog = new OpenFileDialog
         {
-            path = fileDialog.FileName;
+            Title = "Load XML File",
+            Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*",
+            InitialDirectory = defaultPath
+        };
+
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            return openFileDialog.FileName;
         }
 
-        return path;
+        return null; // User canceled
     }
 }
