@@ -11,12 +11,12 @@ namespace Client.Domain.Services.GameStorageManager;
 
 public class GameStorageXMLManager : IGameStorageManager
 {
-    const string defaultFolder = "D:\\Subjects\\7 semester\\CSAD\\Labs\\csad2425ki406Zarytskyi07\\Lab3\\Client\\Games";
+    readonly string defaultFolder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Client\Games"));
 
     public GameState LoadGame()
     {
         GameStateXML readedState = new();
-
+        string f = Directory.GetCurrentDirectory();
         string path = GetPath(defaultFolder, false);
         XmlSerializer serializer = new XmlSerializer(typeof(GameStateXML));
         using (StreamReader reader = new StreamReader(path))
