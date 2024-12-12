@@ -1,9 +1,4 @@
 ﻿using Client.Domain.Services.Settings.GameSettingsService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Domain.Services.GameService;
 
@@ -22,7 +17,7 @@ public struct GameState
 
     public GameState()
     {
-        Board = new bool?[3,3];
+        Board = new bool?[3, 3];
         Mode = GameMode.None;
         Status = GameStatus.Ongoing;
     }
@@ -35,7 +30,7 @@ public struct GameState
         {
             for (int j = 0; j < Board.GetLength(1); j++)
             {
-                cellValue = (Board[i,j] == true) ? CharCellX : (Board[i, j] == false) ? CharCellO : CharEmptyCell;   
+                cellValue = (Board[i, j] == true) ? CharCellX : (Board[i, j] == false) ? CharCellO : CharEmptyCell;
                 board += i.ToString() + j.ToString() + cellValue;
             }
         }

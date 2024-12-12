@@ -1,12 +1,7 @@
 ﻿using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
-using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Domain.Services.GameService;
 
@@ -27,7 +22,7 @@ public class GameService : IGameService
         _gameState.Mode = _settings.GetGameSettings().GetGameMode();
 
 
-        if(_gameState.Mode == GameMode.ManvsAI)
+        if (_gameState.Mode == GameMode.ManvsAI)
             _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();
     }
 
@@ -40,10 +35,10 @@ public class GameService : IGameService
 
     public GameState Move(int row, int column)
     {
-        if(_gameState.Status != GameStatus.Ongoing)
+        if (_gameState.Status != GameStatus.Ongoing)
             return _gameState;
 
-        if(row < 0 || column < 0 || row > 2 || column > 2)
+        if (row < 0 || column < 0 || row > 2 || column > 2)
             throw new ArgumentOutOfRangeException(nameof(row), nameof(column));
 
         ChangeBoard(row, column);

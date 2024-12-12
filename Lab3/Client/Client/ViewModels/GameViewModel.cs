@@ -1,16 +1,13 @@
 ﻿using Client.Domain.Services;
 using Client.Domain.Services.GameService;
 using Client.Domain.Services.ServerService;
-using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Presentation.Services.Navigator;
 using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Client.Presentation.ViewModels;
 
@@ -34,7 +31,7 @@ public class GameViewModel : BaseViewModel
         _gameService.StartGame();
         ChangeBoardView(_gameState);
 
-        if((_gameState.Mode == GameMode.ManvsAI && _gameState.ManPlayer == false) || _gameState.Mode == GameMode.AIvsAI)
+        if (DoNextMoveAI(_gameState.ManPlayer == false))
             _gameService.SendRequestForAIMove();
     }
     #endregion
@@ -53,13 +50,13 @@ public class GameViewModel : BaseViewModel
     public ICommand CellClickedCommand => _cellClickedCommand ??= new RelayCommand(OnCellClickedCommandExecuted);
     private void OnCellClickedCommandExecuted(object o)
     {
-        if(_gameState.Status != GameStatus.Ongoing)
+        if (_gameState.Status != GameStatus.Ongoing)
             return;
 
-        if(_gameState.Mode == GameMode.AIvsAI)
+        if (_gameState.Mode == GameMode.AIvsAI)
             return;
 
-        bool queryAI = (_gameState.XNumber > _gameState.ONumber && _gameState.ManPlayer == true) 
+        bool queryAI = (_gameState.XNumber > _gameState.ONumber && _gameState.ManPlayer == true)
                     || (_gameState.XNumber == _gameState.ONumber && _gameState.ManPlayer == false);
         if (_gameState.Mode == GameMode.ManvsAI && queryAI)
             return;
@@ -71,7 +68,7 @@ public class GameViewModel : BaseViewModel
 
         MakeMove(move);
 
-        if (_gameState.Mode == GameMode.ManvsAI && _gameState.Status == GameStatus.Ongoing)
+        if (DoNextMoveAI(true))
             _gameService.SendRequestForAIMove();
     }
     #endregion
@@ -92,7 +89,7 @@ public class GameViewModel : BaseViewModel
 
         CheckWinner();
 
-        if (_gameState.Mode == GameMode.AIvsAI && _gameState.Status == GameStatus.Ongoing)
+        if (DoNextMoveAI(false))
             _gameService.SendRequestForAIMove();
     }
 
@@ -102,23 +99,28 @@ public class GameViewModel : BaseViewModel
         var CrossCellPath = (BitmapImage)Application.Current.Resources["CrosstCell"];
         var ZeroCellPath = (BitmapImage)Application.Current.Resources["ZeroCell"];
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
                 var image = (state.Board[i, j] == null) ? DefaultCellPath : (state.Board[i, j] == true) ? CrossCellPath : ZeroCellPath;
                 BoardImages[i][j] = image;
             }
-        }   
+        }
     }
 
     private void CheckWinner()
     {
         if (_gameService.IsWinner() != null)
-            MessageBox.Show("Player"+((_gameService.IsWinner()==true)?"X":"O")+" WON!!!!");
+            MessageBox.Show("Player" + ((_gameService.IsWinner() == true) ? "X" : "O") + " WON!!!!");
 
         if (_gameState.Status == GameStatus.Draw)
             MessageBox.Show("DRAW!!!!");
+    }
+
+    private bool DoNextMoveAI(bool manMoved)
+    {
+        return (_gameState.Mode == GameMode.AIvsAI || (_gameState.Mode == GameMode.ManvsAI && manMoved)) && _gameState.Status == GameStatus.Ongoing;
     }
 
     private void GotMoveFromAI(object sender, SerialDataReceivedEventArgs e)
