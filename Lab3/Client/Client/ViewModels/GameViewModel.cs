@@ -32,7 +32,7 @@ public class GameViewModel : BaseViewModel
         _gameService.InvokeGameCommand(GameCommand.NewGame);
         ChangeBoardView(_gameState);
 
-        if (DoNextMoveAI(_gameState.ManPlayer == false))
+        if (IsNextMoveOfAI())
             _gameService.SendRequestForAIMove();
     }
     #endregion
@@ -45,7 +45,7 @@ public class GameViewModel : BaseViewModel
         _gameService.InvokeGameCommand(GameCommand.LoadGame);
         ChangeBoardView(_gameState);
 
-        if (DoNextMoveAI(_gameState.ManPlayer == false))
+        if (IsNextMoveOfAI())
             _gameService.SendRequestForAIMove();
     }
     #endregion
@@ -91,7 +91,7 @@ public class GameViewModel : BaseViewModel
 
         MakeMove(move);
 
-        if (DoNextMoveAI(true))
+        if (IsNextMoveOfAI())
             _gameService.SendRequestForAIMove();
     }
     #endregion
@@ -112,7 +112,7 @@ public class GameViewModel : BaseViewModel
 
         CheckWinner();
 
-        if (DoNextMoveAI(false))
+        if (IsNextMoveOfAI())
             _gameService.SendRequestForAIMove();
     }
 
@@ -141,9 +141,16 @@ public class GameViewModel : BaseViewModel
             MessageBox.Show("DRAW!!!!");
     }
 
-    private bool DoNextMoveAI(bool manMoved)
+    private bool IsNextMoveOfAI()
     {
-        return (_gameState.Mode == GameMode.AIvsAI || (_gameState.Mode == GameMode.ManvsAI && manMoved)) && _gameState.Status == GameStatus.Ongoing;
+        return (_gameState.Mode == GameMode.AIvsAI || (_gameState.Mode == GameMode.ManvsAI && IsManMoved())) && _gameState.Mode != GameMode.ManvsMan && _gameState.Status == GameStatus.Ongoing;
+    }
+
+    private bool IsManMoved()
+    {
+        return (_gameState.Mode == GameMode.ManvsAI)
+            && ((_gameState.ManPlayer == true && _gameState.XNumber > _gameState.ONumber)
+            || (_gameState.ManPlayer == false && _gameState.XNumber == _gameState.ONumber));
     }
 
     private void GotMoveFromAI(object sender, SerialDataReceivedEventArgs e)

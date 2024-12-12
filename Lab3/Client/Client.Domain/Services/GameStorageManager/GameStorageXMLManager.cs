@@ -38,7 +38,7 @@ public class GameStorageXMLManager : IGameStorageManager
     {
         string path = String.IsNullOrEmpty(defaultPath) ? "C:\\" : defaultPath;
 
-        return saveFile? GetPathToSaveXml(path): GetPathToLoadXml(path);
+        return saveFile ? GetPathToSaveXml(path) : GetPathToLoadXml(path);
     }
 
     public static string GetPathToSaveXml(string defaultPath)

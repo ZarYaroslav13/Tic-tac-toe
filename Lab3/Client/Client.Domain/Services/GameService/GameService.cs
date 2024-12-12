@@ -131,6 +131,8 @@ public class GameService : IGameService
         try
         {
             _gameState = _storageManager.LoadGame();
+            _settings.GetGameSettings().SetManPlayerSide(_gameState.ManPlayer);
+            _settings.GetGameSettings().ChangeGameMode(_gameState.Mode);
         }
         catch (Exception)
         {
