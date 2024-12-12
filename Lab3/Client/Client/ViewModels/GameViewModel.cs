@@ -34,7 +34,8 @@ public class GameViewModel : BaseViewModel
         _gameService.StartGame();
         ChangeBoardView(_gameState);
 
-        _gameService.SendRequestForAIMove();
+        if((_gameState.Mode == GameMode.ManvsAI && _gameState.ManPlayer == false) || _gameState.Mode == GameMode.AIvsAI)
+            _gameService.SendRequestForAIMove();
     }
     #endregion
 
@@ -90,6 +91,9 @@ public class GameViewModel : BaseViewModel
         ChangeBoardView(_gameService.Move(row, column));
 
         CheckWinner();
+
+        if (_gameState.Mode == GameMode.AIvsAI && _gameState.Status == GameStatus.Ongoing)
+            _gameService.SendRequestForAIMove();
     }
 
     private void ChangeBoardView(GameState state)
