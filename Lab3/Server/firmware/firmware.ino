@@ -201,7 +201,7 @@ String MoveXStep2(){
 String MoveXStep3(){
   String move = MoveWinNoLose(SignCellX);
 
-  if(move != SignEmptyCell)
+  if(move != String(SignEmptyCell))
     return move;
 
   Cell randMove = board.RandFreeCell();

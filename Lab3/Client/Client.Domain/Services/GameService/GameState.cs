@@ -36,7 +36,7 @@ public struct GameState
             for (int j = 0; j < Board.GetLength(1); j++)
             {
                 cellValue = (Board[i,j] == true) ? CharCellX : (Board[i, j] == false) ? CharCellO : CharEmptyCell;   
-                board += i + j + cellValue;
+                board += i.ToString() + j.ToString() + cellValue;
             }
         }
         return board;

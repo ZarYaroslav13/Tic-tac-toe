@@ -108,5 +108,4 @@ public class GameService : IGameService
 
         _settings.GetPortSettings().AddSerialDataReceivedEventHandler(handler);
     }
-
 }

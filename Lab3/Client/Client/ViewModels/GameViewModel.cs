@@ -31,10 +31,11 @@ public class GameViewModel : BaseViewModel
     public ICommand StartNewGameCommand => _startNewGameCommand ??= new RelayCommand(OnStartNewGameCommandExecuted);
     private void OnStartNewGameCommandExecuted(object o)
     {
+        _gameService.AddReceivedEventHandler(new(GotMoveFromAI));
         _gameService.StartGame();
-        _gameService.AddReceivedEventHandler(new(GetMoveFromAI));
         ChangeBoardView(_gameState);
 
+        _gameService.SendRequestForAIMove();
     }
     #endregion
 
@@ -69,6 +70,9 @@ public class GameViewModel : BaseViewModel
         string move = o as string;
 
         MakeMove(move);
+
+        if (_gameState.Mode == GameMode.ManvsAI && _gameState.Status == GameStatus.Ongoing)
+            _gameService.SendRequestForAIMove();
     }
     #endregion
 
@@ -112,7 +116,7 @@ public class GameViewModel : BaseViewModel
             MessageBox.Show("DRAW!!!!");
     }
 
-    private void GetMoveFromAI(object sender, SerialDataReceivedEventArgs e)
+    private void GotMoveFromAI(object sender, SerialDataReceivedEventArgs e)
     {
         string strForReceive = String.Empty;
         Application.Current.Dispatcher.Invoke(() =>
