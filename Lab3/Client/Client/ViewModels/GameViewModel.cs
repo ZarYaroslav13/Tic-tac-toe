@@ -28,7 +28,7 @@ public class GameViewModel : BaseViewModel
     public ICommand StartNewGameCommand => _startNewGameCommand ??= new RelayCommand(OnStartNewGameCommandExecuted);
     private void OnStartNewGameCommandExecuted(object o)
     {
-        _gameService.StartGame();
+        _gameService.InvokeGameCommand(GameCommand.NewGame);
         ChangeBoardView(_gameState);
 
         if (DoNextMoveAI(_gameState.ManPlayer == false))

@@ -5,7 +5,7 @@ namespace Client.Domain.Services.ServerService;
 
 public interface IGameService
 {
-    public void StartGame();
+    public void InvokeGameCommand(GameCommand command);
 
     public GameState GetGameState();
 

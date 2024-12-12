@@ -8,22 +8,19 @@ namespace Client.Domain.Services.GameService;
 public class GameService : IGameService
 {
     private readonly ISettingsService _settings;
+    private Dictionary<GameCommand, Action> GameCommands;
     private GameState _gameState;
 
     public GameService(ISettingsService settings)
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+
+        AddImplementationForGameCommands();
     }
 
-    public void StartGame()
+    public void InvokeGameCommand(GameCommand command)
     {
-        _gameState = new GameState();
-        _gameState.Status = GameStatus.Ongoing;
-        _gameState.Mode = _settings.GetGameSettings().GetGameMode();
-
-
-        if (_gameState.Mode == GameMode.ManvsAI)
-            _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();
+        GameCommands[command].Invoke();
     }
 
     public SerialPort GetServerPort() => _settings.GetPortSettings().ConnectedPort;
@@ -102,5 +99,36 @@ public class GameService : IGameService
         ArgumentNullException.ThrowIfNull(handler);
 
         _settings.GetPortSettings().AddSerialDataReceivedEventHandler(handler);
+    }
+
+    private void AddImplementationForGameCommands()
+    {
+        GameCommands = new()
+        {
+            { GameCommand.NewGame,  StartNewGameCommand},
+            { GameCommand.LoadGame,  LoadGameCommand},
+            { GameCommand.SaveGame,  SaveGameCommand}
+        };
+    }
+
+    private void StartNewGameCommand()
+    {
+        _gameState = new GameState();
+        _gameState.Status = GameStatus.Ongoing;
+        _gameState.Mode = _settings.GetGameSettings().GetGameMode();
+
+
+        if (_gameState.Mode == GameMode.ManvsAI)
+            _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();
+    }
+
+    private void LoadGameCommand()
+    {
+
+    }
+
+    private void SaveGameCommand()
+    {
+
     }
 }
