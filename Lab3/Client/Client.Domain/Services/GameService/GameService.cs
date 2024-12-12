@@ -1,4 +1,5 @@
-﻿using Client.Domain.Services.ServerService;
+﻿using Client.Domain.Services.GameService.State;
+using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
 using System.IO.Ports;

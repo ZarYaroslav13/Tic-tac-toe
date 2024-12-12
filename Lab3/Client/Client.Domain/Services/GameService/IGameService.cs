@@ -1,4 +1,4 @@
-﻿using Client.Domain.Services.GameService;
+﻿using Client.Domain.Services.GameService.State;
 using System.IO.Ports;
 
 namespace Client.Domain.Services.ServerService;

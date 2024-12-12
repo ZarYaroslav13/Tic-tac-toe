@@ -1,5 +1,6 @@
 ﻿using Client.Domain.Services;
 using Client.Domain.Services.GameService;
+using Client.Domain.Services.GameService.State;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Presentation.Services.Navigator;
@@ -33,6 +34,28 @@ public class GameViewModel : BaseViewModel
 
         if (DoNextMoveAI(_gameState.ManPlayer == false))
             _gameService.SendRequestForAIMove();
+    }
+    #endregion
+
+    #region Load game
+    private ICommand _loadGameCommand = default!;
+    public ICommand LoadGameCommand => _loadGameCommand ??= new RelayCommand(OnLoadGameCommandExecuted);
+    private void OnLoadGameCommandExecuted(object o)
+    {
+        _gameService.InvokeGameCommand(GameCommand.LoadGame);
+        ChangeBoardView(_gameState);
+
+        if (DoNextMoveAI(_gameState.ManPlayer == false))
+            _gameService.SendRequestForAIMove();
+    }
+    #endregion
+
+    #region Save game
+    private ICommand _saveGameCommand = default!;
+    public ICommand SaveGameCommand => _saveGameCommand ??= new RelayCommand(OnSaveGameCommandExecuted);
+    private void OnSaveGameCommandExecuted(object o)
+    {
+        _gameService.InvokeGameCommand(GameCommand.SaveGame);
     }
     #endregion
 

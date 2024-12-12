@@ -1,6 +1,6 @@
 ﻿using Client.Domain.Services.Settings.GameSettingsService;
 
-namespace Client.Domain.Services.GameService;
+namespace Client.Domain.Services.GameService.State;
 
 public struct GameState
 {
@@ -30,7 +30,7 @@ public struct GameState
         {
             for (int j = 0; j < Board.GetLength(1); j++)
             {
-                cellValue = (Board[i, j] == true) ? CharCellX : (Board[i, j] == false) ? CharCellO : CharEmptyCell;
+                cellValue = Board[i, j] == true ? CharCellX : Board[i, j] == false ? CharCellO : CharEmptyCell;
                 board += i.ToString() + j.ToString() + cellValue;
             }
         }
