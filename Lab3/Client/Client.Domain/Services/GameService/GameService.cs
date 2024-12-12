@@ -1,4 +1,5 @@
 ﻿using Client.Domain.Services.GameService.State;
+using Client.Domain.Services.IStorageManager;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
@@ -9,12 +10,14 @@ namespace Client.Domain.Services.GameService;
 public class GameService : IGameService
 {
     private readonly ISettingsService _settings;
+    private readonly IGameStorageManager _storageManager;
     private Dictionary<GameCommand, Action> GameCommands;
     private GameState _gameState;
 
-    public GameService(ISettingsService settings)
+    public GameService(IGameStorageManager storageManager, ISettingsService settings)
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+        _storageManager = storageManager ?? throw new ArgumentNullException(nameof(storageManager));
 
         AddImplementationForGameCommands();
     }
@@ -125,7 +128,14 @@ public class GameService : IGameService
 
     private void LoadGameCommand()
     {
+        try
+        {
+            _gameState = _storageManager.LoadGame();
+        }
+        catch (Exception)
+        {
 
+        }
     }
 
     private void SaveGameCommand()

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Client.Domain.Services.GameStorageManager;
 
@@ -14,7 +15,15 @@ public class GameStorageXMLManager : IGameStorageManager
 {
     public GameState LoadGame()
     {
-        throw new NotImplementedException();
+        GameStateXML readedState = new();
+
+        string path = GetPath();
+        XmlSerializer serializer = new XmlSerializer(typeof(GameStateXML));
+        using (StreamReader reader = new StreamReader(path))
+        {
+            readedState = (GameStateXML)serializer.Deserialize(reader);
+        }
+        return readedState.ToGameState();
     }
 
     public void SaveGame(GameState game)
