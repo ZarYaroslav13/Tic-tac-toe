@@ -1,5 +1,4 @@
-﻿using Client.Domain.Services.GameService.State;
-using Client.Domain.Services.IStorageManager;
+﻿using Client.Domain.Services.IStorageManager;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;
 using Client.Domain.Services.Settings.GameSettingsService;
@@ -18,6 +17,8 @@ public class GameService : IGameService
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         _storageManager = storageManager ?? throw new ArgumentNullException(nameof(storageManager));
+
+        _gameState = new GameState();
 
         AddImplementationForGameCommands();
     }
@@ -39,7 +40,8 @@ public class GameService : IGameService
         if (_gameState.Status != GameStatus.Ongoing)
             return _gameState;
 
-        if (row < 0 || column < 0 || row > 2 || column > 2)
+        if (row < GameState.MinCellDimensionValue || column < GameState.MinCellDimensionValue 
+         || row > GameState.MaxCellDimensionlValue || column > GameState.MaxCellDimensionlValue)
             throw new ArgumentOutOfRangeException(nameof(row), nameof(column));
 
         ChangeBoard(row, column);
@@ -47,26 +49,13 @@ public class GameService : IGameService
         return _gameState;
     }
 
-    private void ChangeBoard(int row, int column)
-    {
-        const int maxXNumber = 5;
-
-        if (_gameState.Board[row, column] == null)
-            _gameState.Board[row, column] = _gameState.XNumber == _gameState.ONumber;
-
-        if (IsWinner() != null)
-        {
-            _gameState.Status = (IsWinner() == true) ? GameStatus.WonPlayerX : GameStatus.WonPlayerO;
-        }
-
-        if (_gameState.XNumber == maxXNumber && IsWinner() == null)
-            _gameState.Status = GameStatus.Draw;
-    }
-
     public bool? IsWinner()
     {
-        for (int i = 0; i < 3; i++)
+        bool mustDoCheck = _gameState.Board[GameState.MinCellDimensionValue, GameState.MinCellDimensionValue].HasValue;
+        for (int i = GameState.MinCellDimensionValue; i < GameState.MaxCellDimensionlValue; i++)
         {
+
+
             if (_gameState.Board[i, 0] == _gameState.Board[i, 1] && _gameState.Board[i, 1] == _gameState.Board[i, 2] && _gameState.Board[i, 0].HasValue)
             {
                 return _gameState.Board[i, 0];
@@ -115,12 +104,26 @@ public class GameService : IGameService
         };
     }
 
+    private void ChangeBoard(int row, int column)
+    {
+        const int maxXNumber = 5;
+
+        if (_gameState.Board[row, column] == null)
+            _gameState.Board[row, column] = _gameState.XNumber == _gameState.ONumber;
+
+        if (IsWinner() != null)
+        {
+            _gameState.Status = (IsWinner() == true) ? GameStatus.WonPlayerX : GameStatus.WonPlayerO;
+        }
+
+        if (_gameState.XNumber == maxXNumber && IsWinner() == null)
+            _gameState.Status = GameStatus.Draw;
+    }
+
     private void StartNewGameCommand()
     {
         _gameState = new GameState();
-        _gameState.Status = GameStatus.Ongoing;
         _gameState.Mode = _settings.GetGameSettings().GetGameMode();
-
 
         if (_gameState.Mode == GameMode.ManvsAI)
             _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();

@@ -1,7 +1,8 @@
-﻿using Client.Domain.Services.Settings.GameSettingsService;
+﻿using Client.Domain.Services.GameService;
+using Client.Domain.Services.Settings.GameSettingsService;
 using System.Xml.Serialization;
 
-namespace Client.Domain.Services.GameService.State;
+namespace Client.Domain.Services.GameStorageManager.XML;
 
 [Serializable]
 public class GameStateXML

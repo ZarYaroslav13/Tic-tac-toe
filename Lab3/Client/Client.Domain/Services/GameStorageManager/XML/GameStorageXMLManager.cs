@@ -1,9 +1,9 @@
-﻿using Client.Domain.Services.GameService.State;
+﻿using Client.Domain.Services.GameService;
 using Client.Domain.Services.IStorageManager;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Client.Domain.Services.GameStorageManager;
+namespace Client.Domain.Services.GameStorageManager.XML;
 
 public class GameStorageXMLManager : IGameStorageManager
 {
@@ -36,7 +36,7 @@ public class GameStorageXMLManager : IGameStorageManager
 
     private string GetPath(string defaultPath = "", bool saveFile = true)
     {
-        string path = String.IsNullOrEmpty(defaultPath) ? "C:\\" : defaultPath;
+        string path = string.IsNullOrEmpty(defaultPath) ? "C:\\" : defaultPath;
 
         return saveFile ? GetPathToSaveXml(path) : GetPathToLoadXml(path);
     }

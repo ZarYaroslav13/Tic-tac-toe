@@ -1,6 +1,5 @@
 ﻿using Client.Domain.Services;
 using Client.Domain.Services.GameService;
-using Client.Domain.Services.GameService.State;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings.GameSettingsService;
 using Client.Presentation.Services.Navigator;

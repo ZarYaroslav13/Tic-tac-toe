@@ -1,5 +1,5 @@
 ﻿using Client.Domain.Services.GameService;
-using Client.Domain.Services.GameStorageManager;
+using Client.Domain.Services.GameStorageManager.XML;
 using Client.Domain.Services.IStorageManager;
 using Client.Domain.Services.ServerService;
 using Client.Domain.Services.Settings;

@@ -1,4 +1,4 @@
-﻿using Client.Domain.Services.GameService.State;
+﻿using Client.Domain.Services.GameService;
 
 namespace Client.Domain.Services.IStorageManager;
 
