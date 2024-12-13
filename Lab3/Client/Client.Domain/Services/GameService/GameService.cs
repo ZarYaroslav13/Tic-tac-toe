@@ -40,8 +40,8 @@ public class GameService : IGameService
         if (_gameState.Status != GameStatus.Ongoing)
             return _gameState;
 
-        if (row < GameState.MinCellDimensionValue || column < GameState.MinCellDimensionValue 
-         || row > GameState.MaxCellDimensionlValue || column > GameState.MaxCellDimensionlValue)
+        if (row < 0 || column < 0 
+         || row > GameState.CellDimensionSize-1 || column > GameState.CellDimensionSize-1)
             throw new ArgumentOutOfRangeException(nameof(row), nameof(column));
 
         ChangeBoard(row, column);
@@ -51,35 +51,7 @@ public class GameService : IGameService
 
     public bool? IsWinner()
     {
-        bool mustDoCheck = _gameState.Board[GameState.MinCellDimensionValue, GameState.MinCellDimensionValue].HasValue;
-        for (int i = GameState.MinCellDimensionValue; i < GameState.MaxCellDimensionlValue; i++)
-        {
-
-
-            if (_gameState.Board[i, 0] == _gameState.Board[i, 1] && _gameState.Board[i, 1] == _gameState.Board[i, 2] && _gameState.Board[i, 0].HasValue)
-            {
-                return _gameState.Board[i, 0];
-            }
-        }
-
-        for (int j = 0; j < 3; j++)
-        {
-            if (_gameState.Board[0, j] == _gameState.Board[1, j] && _gameState.Board[1, j] == _gameState.Board[2, j] && _gameState.Board[0, j].HasValue)
-            {
-                return _gameState.Board[0, j];
-            }
-        }
-
-        if (_gameState.Board[0, 0] == _gameState.Board[1, 1] && _gameState.Board[1, 1] == _gameState.Board[2, 2] && _gameState.Board[0, 0].HasValue)
-        {
-            return _gameState.Board[0, 0];
-        }
-        if (_gameState.Board[0, 2] == _gameState.Board[1, 1] && _gameState.Board[1, 1] == _gameState.Board[2, 0] && _gameState.Board[0, 2].HasValue)
-        {
-            return _gameState.Board[0, 2];
-        }
-
-        return null;
+        return CheckRows() ?? CheckColumns() ?? CheckDiagonals();
     }
 
     public void SendRequestForAIMove()
@@ -102,22 +74,6 @@ public class GameService : IGameService
             { GameCommand.LoadGame,  LoadGameCommand},
             { GameCommand.SaveGame,  SaveGameCommand}
         };
-    }
-
-    private void ChangeBoard(int row, int column)
-    {
-        const int maxXNumber = 5;
-
-        if (_gameState.Board[row, column] == null)
-            _gameState.Board[row, column] = _gameState.XNumber == _gameState.ONumber;
-
-        if (IsWinner() != null)
-        {
-            _gameState.Status = (IsWinner() == true) ? GameStatus.WonPlayerX : GameStatus.WonPlayerO;
-        }
-
-        if (_gameState.XNumber == maxXNumber && IsWinner() == null)
-            _gameState.Status = GameStatus.Draw;
     }
 
     private void StartNewGameCommand()
@@ -146,5 +102,112 @@ public class GameService : IGameService
     private void SaveGameCommand()
     {
         _storageManager.SaveGame(_gameState);
+    }
+
+    private void ChangeBoard(int row, int column)
+    {
+        int maxXNumber = (GameState.CellDimensionSize*GameState.CellDimensionSize) /2+1;
+
+        if (_gameState.Board[row, column] == null)
+            _gameState.Board[row, column] = _gameState.XNumber == _gameState.ONumber;
+
+        if (IsWinner() != null)
+        {
+            _gameState.Status = (IsWinner() == true) ? GameStatus.WonPlayerX : GameStatus.WonPlayerO;
+        }
+
+        if (_gameState.XNumber == maxXNumber && IsWinner() == null)
+            _gameState.Status = GameStatus.Draw;
+    }
+
+    private bool? CheckRows()
+    {
+        bool? winSide = null, result = null;
+
+        for (int i = 0; i < GameState.CellDimensionSize; i++)
+        {
+            winSide = _gameState.Board[i,0];
+
+            if (!winSide.HasValue)
+                break;
+
+            for(int j = 1; j < GameState.CellDimensionSize; j++)
+            {
+                if(!_gameState.Board[i, j].HasValue || _gameState.Board[i, j] != winSide)
+                    break;
+
+                if (j == GameState.CellDimensionSize - 1)
+                    result = winSide;
+            }
+        }
+
+        return result;
+    }
+
+    private bool? CheckColumns()
+    {
+        bool? winSide = null, result = null;
+
+        for (int i = 0; i < GameState.CellDimensionSize; i++)
+        {
+            winSide = _gameState.Board[0, i];
+
+            if (!winSide.HasValue)
+                break;
+
+            for (int j = 1; j < GameState.CellDimensionSize; j++)
+            {
+                if (!_gameState.Board[j, i].HasValue || _gameState.Board[j, i] != winSide)
+                    break;
+
+                if (j == GameState.CellDimensionSize - 1)
+                    result = winSide;
+            }
+        }
+
+        return result;
+    }
+
+    private bool? CheckDiagonals()
+    {
+        bool? winSide = CheckMainDiagonal() ?? CheckOtherDiagonal();
+
+        return winSide;
+    }
+
+    private bool? CheckMainDiagonal()
+    {
+        bool? winSide = null;
+
+        if (!_gameState.Board[0, 0].HasValue)
+            return null;
+
+        winSide = _gameState.Board[0, 0];
+
+        for (int i = 1; i < GameState.CellDimensionSize; i++)
+        {
+            if (!_gameState.Board[i, i].HasValue || _gameState.Board[i, i] != winSide)
+                return null;
+        }
+
+        return winSide;
+    }
+
+    private bool? CheckOtherDiagonal()
+    {
+        bool? winSide = _gameState.Board[0, GameState.CellDimensionSize - 1];
+
+        if (!winSide.HasValue)
+            return null;
+
+        for (int i = 0; i < GameState.CellDimensionSize; i++)
+        {
+            bool? cell = _gameState.Board[i, GameState.CellDimensionSize - 1 - i];
+
+            if (!cell.HasValue || cell != winSide)
+                return null;
+        }
+
+        return winSide;
     }
 }

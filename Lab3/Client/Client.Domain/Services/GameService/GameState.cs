@@ -8,8 +8,7 @@ public struct GameState
     public const char CharCellX = 'x';
     public const char CharCellO = 'o';
     public const char CharEmptyCell = ' ';
-    public const int MinCellDimensionValue = 0;
-    public const int MaxCellDimensionlValue = 2;
+    public const int CellDimensionSize = 3;
 
     public bool?[,] Board;
     public int XNumber => Board.Cast<bool?>().Count(c => c == true);
@@ -20,7 +19,7 @@ public struct GameState
 
     public GameState()
     {
-        Board = new bool?[MaxCellDimensionlValue+1, MaxCellDimensionlValue+1];
+        Board = new bool?[CellDimensionSize, CellDimensionSize];
         Mode = GameMode.None;
         Status = GameStatus.Ongoing;
     }
@@ -29,9 +28,9 @@ public struct GameState
     {
         string board = "";
         char cellValue = ' ';
-        for (int i = MinCellDimensionValue; i < Board.GetLength(0); i++)
+        for (int i = 0; i < Board.GetLength(0); i++)
         {
-            for (int j = MinCellDimensionValue; j < Board.GetLength(1); j++)
+            for (int j = 0; j < Board.GetLength(1); j++)
             {
                 cellValue = Board[i, j] == true ? CharCellX : Board[i, j] == false ? CharCellO : CharEmptyCell;
                 board += i.ToString() + j.ToString() + cellValue;
