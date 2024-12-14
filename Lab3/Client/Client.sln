@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Domain", "Client.Dom
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7B08EC87-5748-45FB-AFD2-EE76CEE8BC91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Domain.Tests", "Client.Domain.Tests\Client.Domain.Tests.csproj", "{B985237E-ACD4-40F5-A7E2-B34886F258C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Domain.Tests", "Client.Domain.Tests\Client.Domain.Tests.csproj", "{B985237E-ACD4-40F5-A7E2-B34886F258C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{1985160A-504E-4E88-8720-0D7B4F932509}"
 EndProject
