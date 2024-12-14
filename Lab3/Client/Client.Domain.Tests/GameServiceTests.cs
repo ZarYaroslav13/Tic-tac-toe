@@ -113,9 +113,9 @@ public class GameServiceTests
     [DataRow(-1, 0)]
     [DataRow(0, -1)]
     [DataRow(-1, -1)]
-    [DataRow(3, 0)]
-    [DataRow(0, 3)]
-    [DataRow(3, 3)]
+    [DataRow(GameState.CellDimensionSize, 0)]
+    [DataRow(0, GameState.CellDimensionSize)]
+    [DataRow(GameState.CellDimensionSize, GameState.CellDimensionSize)]
     public void Move_ThrowArgumentOutOfRangeException_WhenCoordinateCellDoNotExist(int row, int col)
     {
         var gameState = new GameState();
