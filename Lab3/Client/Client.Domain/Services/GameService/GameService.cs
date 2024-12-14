@@ -40,8 +40,8 @@ public class GameService : IGameService
         if (_gameState.Status != GameStatus.Ongoing)
             return _gameState;
 
-        if (row < 0 || column < 0 
-         || row > GameState.CellDimensionSize-1 || column > GameState.CellDimensionSize-1)
+        if (row < 0 || column < 0
+         || row > GameState.CellDimensionSize - 1 || column > GameState.CellDimensionSize - 1)
             throw new ArgumentOutOfRangeException(nameof(row), nameof(column));
 
         ChangeBoard(row, column);
@@ -106,7 +106,7 @@ public class GameService : IGameService
 
     private void ChangeBoard(int row, int column)
     {
-        int maxXNumber = (GameState.CellDimensionSize*GameState.CellDimensionSize) /2+1;
+        int maxXNumber = (GameState.CellDimensionSize * GameState.CellDimensionSize) / 2 + 1;
 
         if (_gameState.Board[row, column] == null)
             _gameState.Board[row, column] = _gameState.XNumber == _gameState.ONumber;
@@ -126,14 +126,14 @@ public class GameService : IGameService
 
         for (int i = 0; i < GameState.CellDimensionSize; i++)
         {
-            winSide = _gameState.Board[i,0];
+            winSide = _gameState.Board[i, 0];
 
             if (!winSide.HasValue)
                 break;
 
-            for(int j = 1; j < GameState.CellDimensionSize; j++)
+            for (int j = 1; j < GameState.CellDimensionSize; j++)
             {
-                if(!_gameState.Board[i, j].HasValue || _gameState.Board[i, j] != winSide)
+                if (!_gameState.Board[i, j].HasValue || _gameState.Board[i, j] != winSide)
                     break;
 
                 if (j == GameState.CellDimensionSize - 1)

@@ -18,6 +18,6 @@
     </Row>
   </Board>
   <Mode>ManvsMan</Mode>
-  <Status>Ongoing</Status>
+  <Status>WonPlayerX</Status>
   <ManPlayer xsi:nil="true" />
 </GameStateXML>

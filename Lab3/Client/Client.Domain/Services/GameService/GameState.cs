@@ -43,13 +43,13 @@ public struct GameState
     {
         if (obj == null) return false;
 
-        if(obj.GetType() != typeof(GameState)) return false;
+        if (obj.GetType() != typeof(GameState)) return false;
 
         var state = (GameState)obj;
 
         return Board.Cast<bool?>().SequenceEqual(state.Board.Cast<bool?>())
-            && (Mode == state.Mode) 
-            && (Status == state.Status) 
+            && (Mode == state.Mode)
+            && (Status == state.Status)
             && (ManPlayer == state.ManPlayer);
     }
 }

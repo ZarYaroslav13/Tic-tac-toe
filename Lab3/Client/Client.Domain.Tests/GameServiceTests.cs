@@ -110,7 +110,7 @@ public class GameServiceTests
     }
 
     [TestMethod]
-    [DataRow(-1,0)]
+    [DataRow(-1, 0)]
     [DataRow(0, -1)]
     [DataRow(-1, -1)]
     [DataRow(3, 0)]

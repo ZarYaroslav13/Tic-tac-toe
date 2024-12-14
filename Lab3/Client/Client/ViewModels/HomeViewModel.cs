@@ -33,6 +33,7 @@ public class HomeViewModel : BaseViewModel
         Navigator.NavigateTo<GameViewModel>();
     }
     #endregion
+
     public HomeViewModel(INavigator navigator, ISettingsService settings) : base(navigator)
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
