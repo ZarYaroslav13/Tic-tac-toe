@@ -1,3 +1,8 @@
+param(
+    [string]$Mode,         # 'real' for Arduino, 'demo' for Proteus
+    [string]$Port          # COM port (e.g., COM1)
+)
+
 $ErrorActionPreference = "Stop"
 
 $repoDir = (Get-Item -Path $PSScriptRoot).Parent.Parent.FullName
@@ -17,10 +22,6 @@ Remove-Item "$binDir\arduino-cli.zip"
 
 Write-Host "Configuring Arduino CLI..."
 & $arduinoCliPath config init --overwrite
-
-
-Write-Host "Configuring Arduino CLI..."
-& $arduinoCliPath config init --overwrite
 & $arduinoCliPath core update-index
 & $arduinoCliPath core install arduino:avr
 
@@ -36,34 +37,28 @@ if (Test-Path $outputHexPath) {
     Exit 1
 }
 
-$port = Read-Host -Prompt "Enter the COM port (e.g., COM1)"
+if ($Mode -eq 'real') {
+    if (-not $Port) {
+        Write-Host "Error: COM port must be specified in 'real' mode."
+        Exit 1
+    }
 
-Write-Host "Uploading HEX file to Arduino..."
-# Ask the user for input to determine the mode
-$mode = Read-Host -Prompt "Are you using a Real Arduino or Simulation (Proteus)? Enter 'real' for Arduino or 'demo' for Proteus"
-
-if ($mode -eq 'real') {
-    # Real Arduino Mode
-    $port = Read-Host -Prompt "Enter the COM port (e.g., COM1)"
-
-    Write-Host "Uploading HEX file to Arduino..."
-    & $arduinoCliPath upload -p $port --fqbn arduino:avr:uno -i $outputHexPath
+    Write-Host "Uploading HEX file to Arduino on port $Port..."
+    & $arduinoCliPath upload -p $Port --fqbn arduino:avr:uno -i $outputHexPath
 
     Write-Host "HEX file uploaded successfully to the Real Arduino."
-
-} elseif ($mode -eq 'demo') {
-    # Simulation Mode (Proteus)
+} elseif ($Mode -eq 'demo') {
     Write-Host "Proteus (Demo) mode detected. Skipping upload to Arduino..."
     Write-Host "Load the HEX file into Proteus manually: $outputHexPath"
 } else {
-    Write-Host "Invalid input. Please enter 'real' for Real Arduino or 'demo' for Proteus."
-    exit
+    Write-Host "Error: Invalid mode specified. Use 'real' for Real Arduino or 'demo' for Proteus."
+    Exit 1
 }
 
 Write-Host "Running tests with COM port parameter..."
 New-Item -ItemType Directory -Force -Path $testResultsPath | Out-Null
 
-$testRunParameters = "TestRunParameters.Parameter(name=\`"COM_PORT\`", value=\`"$port\`")"
+$testRunParameters = "TestRunParameters.Parameter(name=\`"COM_PORT\`", value=\`"$Port\`")"
 
 dotnet test $testProjectPath `
     --logger "trx;LogFileName=$testResultsPath\test-results.trx" `
