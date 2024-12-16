@@ -148,7 +148,6 @@ public class GameService : IGameService
             var gameState = _storageManager.LoadGame();
             if(gameState != new GameState())
             {
-                _gameState = _storageManager.LoadGame();
                 _settings.GetGameSettings().SetManPlayerSide(_gameState.ManPlayer);
                 _settings.GetGameSettings().ChangeGameMode(_gameState.Mode);
             }
