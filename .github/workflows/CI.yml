@@ -69,10 +69,13 @@ jobs:
       run: |
         & "$env:GITHUB_WORKSPACE\arduino-cli\arduino-cli.exe" compile --fqbn arduino:avr:uno --output-dir "$env:GITHUB_WORKSPACE\Lab3\Server\firmware" "$env:GITHUB_WORKSPACE\Lab3\Server\firmware\firmware.ino"
 
-
     - name: Save HEX file
+      shell: pwsh
       run: |
         mkdir -p "./ci-build/server/"
+        if (-Not (Test-Path "./ci-build/server/")) {
+          New-Item -ItemType Directory -Path "./ci-build/server/"
+        }
         Copy-Item "$env:GITHUB_WORKSPACE/Lab3\Server/firmware/build/arduino.avr.uno/firmware.ino.hex" -Destination "./ci-build/server/server-script-arduino-uno-r3.ino.hex"
 
     - name: Upload Arduino Uno R3 HEX Artifact
