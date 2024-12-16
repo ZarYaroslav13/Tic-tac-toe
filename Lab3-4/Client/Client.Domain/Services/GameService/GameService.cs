@@ -153,7 +153,7 @@ public class GameService : IGameService
             winSide = _gameState.Board[0, i];
 
             if (!winSide.HasValue)
-                break;
+                continue;
 
             for (int j = 1; j < GameState.CellDimensionSize; j++)
             {
