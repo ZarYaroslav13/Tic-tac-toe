@@ -6,6 +6,10 @@ using System.IO.Ports;
 
 namespace Client.Domain.Services.GameService;
 
+/// <summary>
+/// Provides the core game logic for managing the game state, handling moves,
+/// invoking commands, and interacting with settings and storage.
+/// </summary>
 public class GameService : IGameService
 {
     private readonly ISettingsService _settings;
@@ -13,6 +17,14 @@ public class GameService : IGameService
     private Dictionary<GameCommand, Action> GameCommands;
     private GameState _gameState;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GameService"/> class.
+    /// </summary>
+    /// <param name="storageManager">The storage manager for saving and loading games.</param>
+    /// <param name="settings">The settings service for game configurations.</param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when <paramref name="storageManager"/> or <paramref name="settings"/> is null.
+    /// </exception>
     public GameService(IGameStorageManager storageManager, ISettingsService settings)
     {
         _settings = settings ?? throw new ArgumentNullException(nameof(settings));
@@ -23,18 +35,39 @@ public class GameService : IGameService
         AddImplementationForGameCommands();
     }
 
+    /// <summary>
+    /// Invokes the specified game command.
+    /// </summary>
+    /// <param name="command">The command to invoke.</param>
     public void InvokeGameCommand(GameCommand command)
     {
         GameCommands[command].Invoke();
     }
 
+    /// <summary>
+    /// Gets the serial port connected to the game server.
+    /// </summary>
+    /// <returns>The connected <see cref="SerialPort"/> instance.</returns>
     public SerialPort GetServerPort() => _settings.GetPortSettings().ConnectedPort;
 
+    /// <summary>
+    /// Retrieves the current game state.
+    /// </summary>
+    /// <returns>The current <see cref="GameState"/>.</returns>
     public GameState GetGameState()
     {
         return _gameState;
     }
 
+    /// <summary>
+    /// Updates the game board with a move at the specified position.
+    /// </summary>
+    /// <param name="row">The row index of the move.</param>
+    /// <param name="column">The column index of the move.</param>
+    /// <returns>The updated <see cref="GameState"/>.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the specified position is out of bounds.
+    /// </exception>
     public GameState Move(int row, int column)
     {
         if (_gameState.Status != GameStatus.Ongoing)
@@ -49,16 +82,30 @@ public class GameService : IGameService
         return _gameState;
     }
 
+    /// <summary>
+    /// Determines the winner of the game.
+    /// </summary>
+    /// <returns>
+    /// True if 'X' is the winner, false if 'O' is the winner, or null if there is no winner.
+    /// </returns>
     public bool? IsWinner()
     {
         return CheckRows() ?? CheckColumns() ?? CheckDiagonals();
     }
 
+    /// <summary>
+    /// Sends a request for the AI to make a move based on the current game state.
+    /// </summary>
     public void SendRequestForAIMove()
     {
         GetServerPort().Write(_gameState.GetServerBoardString());
     }
 
+    /// <summary>
+    /// Adds a handler for the serial data received event.
+    /// </summary>
+    /// <param name="handler">The event handler to add.</param>
+    /// <exception cref="ArgumentNullException">Thrown when the handler is null.</exception>
     public void AddReceivedEventHandler(SerialDataReceivedEventHandler handler)
     {
         ArgumentNullException.ThrowIfNull(handler);
@@ -66,6 +113,9 @@ public class GameService : IGameService
         _settings.GetPortSettings().AddSerialDataReceivedEventHandler(handler);
     }
 
+    /// <summary>
+    /// Initializes the game commands with their respective implementations.
+    /// </summary>
     private void AddImplementationForGameCommands()
     {
         GameCommands = new()
@@ -76,6 +126,9 @@ public class GameService : IGameService
         };
     }
 
+    /// <summary>
+    /// Starts a new game and initializes the game state.
+    /// </summary>
     private void StartNewGameCommand()
     {
         _gameState = new GameState();
@@ -85,6 +138,9 @@ public class GameService : IGameService
             _gameState.ManPlayer = _settings.GetGameSettings().GetManPlayerSide();
     }
 
+    /// <summary>
+    /// Loads a saved game from storage and updates the game settings.
+    /// </summary>
     private void LoadGameCommand()
     {
         try
@@ -103,11 +159,19 @@ public class GameService : IGameService
         }
     }
 
+    /// <summary>
+    /// Saves the current game state to storage.
+    /// </summary>
     private void SaveGameCommand()
     {
         _storageManager.SaveGame(_gameState);
     }
 
+    /// <summary>
+    /// Updates the game board and checks for a winner or draw condition.
+    /// </summary>
+    /// <param name="row">The row index of the move.</param>
+    /// <param name="column">The column index of the move.</param>
     private void ChangeBoard(int row, int column)
     {
         int maxXNumber = (GameState.CellDimensionSize * GameState.CellDimensionSize) / 2 + 1;
@@ -124,6 +188,10 @@ public class GameService : IGameService
             _gameState.Status = GameStatus.Draw;
     }
 
+    /// <summary>
+    /// Checks for a winning condition in the rows.
+    /// </summary>
+    /// <returns>The winning player, if any.</returns>
     private bool? CheckRows()
     {
         bool? winSide = null, result = null;
@@ -148,6 +216,10 @@ public class GameService : IGameService
         return result;
     }
 
+    /// <summary>
+    /// Checks for a winning condition in the columns.
+    /// </summary>
+    /// <returns>The winning player, if any.</returns>
     private bool? CheckColumns()
     {
         bool? winSide = null, result = null;
@@ -172,6 +244,10 @@ public class GameService : IGameService
         return result;
     }
 
+    /// <summary>
+    /// Checks for a winning condition in the diagonals.
+    /// </summary>
+    /// <returns>The winning player, if any.</returns>
     private bool? CheckDiagonals()
     {
         bool? winSide = CheckMainDiagonal() ?? CheckOtherDiagonal();
@@ -179,6 +255,10 @@ public class GameService : IGameService
         return winSide;
     }
 
+    /// <summary>
+    /// Checks the main diagonal for a winning condition.
+    /// </summary>
+    /// <returns>The winning player, if any.</returns>
     private bool? CheckMainDiagonal()
     {
         bool? winSide = null;
@@ -197,6 +277,10 @@ public class GameService : IGameService
         return winSide;
     }
 
+    /// <summary>
+    /// Checks the other diagonal for a winning condition.
+    /// </summary>
+    /// <returns>The winning player, if any.</returns>
     private bool? CheckOtherDiagonal()
     {
         bool? winSide = _gameState.Board[0, GameState.CellDimensionSize - 1];
