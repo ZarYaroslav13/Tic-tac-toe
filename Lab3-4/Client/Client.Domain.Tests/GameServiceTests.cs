@@ -9,6 +9,11 @@ using System.IO.Ports;
 
 namespace Client.Domain.Tests;
 
+
+/// <summary>
+/// Unit tests for the <see cref="GameService"/> class.
+/// These tests validate the behavior of various methods and commands within the <see cref="GameService"/>.
+/// </summary>
 [TestClass]
 public class GameServiceTests
 {
@@ -18,6 +23,10 @@ public class GameServiceTests
     private readonly ISettingsService _settings;
     private readonly GameService _gameService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GameServiceTests"/> class.
+    /// Sets up mock dependencies and initializes the <see cref="GameService"/> instance.
+    /// </summary>
     public GameServiceTests()
     {
         _storageManager = A.Fake<IGameStorageManager>();
@@ -31,6 +40,10 @@ public class GameServiceTests
         _gameService = new(_storageManager, _settings);
     }
 
+    /// <summary>
+    /// Tests the constructor of the <see cref="GameService"/> class.
+    /// Ensures that <see cref="ArgumentNullException"/> is thrown when any of the constructor parameters is null.
+    /// </summary>
     [TestMethod]
     public void Constructor_ThrowArgumentNullException_WhenArgumentsAreNull()
     {
@@ -39,6 +52,10 @@ public class GameServiceTests
         Assert.ThrowsException<ArgumentNullException>(() => new GameService(null, null));
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.InvokeGameCommand"/> method for the <see cref="GameCommand.NewGame"/> command.
+    /// Verifies that a new game is created when the game state is in a "new" state.
+    /// </summary>
     [TestMethod]
     public void InvokeGameCommand_ExecuteNewGameCommand_WhenStateIsNew()
     {
@@ -53,6 +70,10 @@ public class GameServiceTests
         Assert.AreEqual(gameState, _gameService.GetGameState());
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.InvokeGameCommand"/> method for the <see cref="GameCommand.LoadGame"/> command.
+    /// Verifies that the game state is correctly loaded when the load command is executed.
+    /// </summary>
     [TestMethod]
     public void InvokeGameCommand_ExecuteLoadGameCommand_WhenCallsLoadMethodAndStateIsPredicted()
     {
@@ -67,6 +88,10 @@ public class GameServiceTests
         Assert.AreEqual(gameState, _gameService.GetGameState());
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.InvokeGameCommand"/> method for the <see cref="GameCommand.SaveGame"/> command.
+    /// Verifies that the game state is saved correctly when the save command is executed.
+    /// </summary>
     [TestMethod]
     public void SaveGameCommand_ExecuteSaveGameCommand_WhenCallsSaveMethodWithGameState()
     {
@@ -75,6 +100,10 @@ public class GameServiceTests
         A.CallTo(() => _storageManager.SaveGame(_gameService.GetGameState())).MustHaveHappened();
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.GetServerPort"/> method.
+    /// Verifies that the correct serial port is returned when querying the connected port.
+    /// </summary>
     [TestMethod]
     public void GetServerPort_ReturnConnectedSerialPort_WhenReturnedNeededPort()
     {
@@ -87,12 +116,20 @@ public class GameServiceTests
         Assert.AreEqual(port, receivedPort);
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.GetGameState"/> method.
+    /// Verifies that the current game state is returned correctly.
+    /// </summary>
     [TestMethod]
     public void GetGameState_ReturnCurentGameState_WhenReturnedNewGameState()
     {
         Assert.AreEqual(new GameState(), _gameService.GetGameState());
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.Move"/> method when the game state remains unchanged.
+    /// Verifies that the game state does not change after a move if the game status is "Draw".
+    /// </summary>
     [TestMethod]
     public void Move_ReturnGameState_WhenGameStateUnchanged()
     {
@@ -109,6 +146,12 @@ public class GameServiceTests
         Assert.AreEqual(gameState, _gameService.GetGameState());
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.Move"/> method when the cell coordinates are out of range.
+    /// Verifies that an <see cref="ArgumentOutOfRangeException"/> is thrown for invalid coordinates.
+    /// </summary>
+    /// <param name="row">The row index of the cell.</param>
+    /// <param name="col">The column index of the cell.</param>
     [TestMethod]
     [DataRow(-1, 0)]
     [DataRow(0, -1)]
@@ -128,6 +171,12 @@ public class GameServiceTests
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => _gameService.Move(row, col));
     }
 
+    /// <summary>
+    /// Tests the <see cref="GameService.Move"/> method when the board is changed predictably.
+    /// Verifies that the game state is updated correctly after a valid move.
+    /// </summary>
+    /// <param name="row">The row index of the move.</param>
+    /// <param name="col">The column index of the move.</param>
     [TestMethod]
     [DataRow(0, 0)]
     public void Move_MakeMove_WhenBoardChangedPredictably(int row, int col)
