@@ -72,7 +72,6 @@ jobs:
     - name: Save HEX file
       shell: pwsh
       run: |
-        mkdir -p "./ci-build/server/"
         if (-Not (Test-Path "./ci-build/server/")) {
           New-Item -ItemType Directory -Path "./ci-build/server/"
         }
