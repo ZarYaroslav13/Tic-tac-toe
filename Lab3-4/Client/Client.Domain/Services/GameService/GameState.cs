@@ -1,5 +1,6 @@
 ﻿using Client.Domain.Services.Settings.GameSettingsService;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Media.Media3D;
 
 namespace Client.Domain.Services.GameService;
 
@@ -39,11 +40,25 @@ public struct GameState
         return board;
     }
 
+    public static bool operator ==(GameState? left, GameState? right)
+    {
+        if (ReferenceEquals(left, right))
+            return true;
+
+        if (left is null || right is null)
+            return false;
+
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(GameState? left, GameState? right)
+    {
+        return !(left==right);
+    }
+
     public override bool Equals([NotNullWhen(true)] object? obj)
     {
-        if (obj == null) return false;
-
-        if (obj.GetType() != typeof(GameState)) return false;
+        if (obj == null || obj.GetType() != typeof(GameState)) return false;
 
         var state = (GameState)obj;
 
