@@ -3,21 +3,21 @@
   <Board>
     <Row>
       <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>true</boolean>
+    </Row>
+    <Row>
       <boolean xsi:nil="true" />
       <boolean>false</boolean>
-    </Row>
-    <Row>
-      <boolean xsi:nil="true" />
-      <boolean xsi:nil="true" />
       <boolean xsi:nil="true" />
     </Row>
     <Row>
+      <boolean>false</boolean>
       <boolean>true</boolean>
-      <boolean xsi:nil="true" />
       <boolean xsi:nil="true" />
     </Row>
   </Board>
   <Mode>ManvsAI</Mode>
   <Status>Ongoing</Status>
-  <ManPlayer>false</ManPlayer>
+  <ManPlayer>true</ManPlayer>
 </GameStateXML>
