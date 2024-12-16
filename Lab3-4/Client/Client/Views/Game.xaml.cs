@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace Client.Presentation.Views
+namespace Client.Presentation.Views;
+
+/// <summary>
+/// Interaction logic for Game.xaml
+/// </summary>
+public partial class Game : UserControl
 {
-    /// <summary>
-    /// Interaction logic for Game.xaml
-    /// </summary>
-    public partial class Game : UserControl
+    public Game()
     {
-        public Game()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
