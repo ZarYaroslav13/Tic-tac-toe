@@ -7,7 +7,7 @@
         <v:Home/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type TypeName=vm:SettingsViewModel}">
-        <v:Setting/>
+        <v:Settings/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type TypeName=vm:GameViewModel}">
         <v:Game/>
