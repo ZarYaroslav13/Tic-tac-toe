@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l" kind="class" language="C#" prot="public">
+    <compoundname>Client::Domain::Services::GameStorageManager::XML::GameStateXML</compoundname>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a461a22acccab8075a3a6932bef3d961a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>List&lt; List&lt; bool?&gt; &gt;</type>
+        <definition>List&lt;List&lt;bool?&gt; &gt; Client.Domain.Services.GameStorageManager.XML.GameStateXML.Board</definition>
+        <argsstring></argsstring>
+        <name>Board</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.Board</qualifiedname>
+        <briefdescription>
+<para>The game board represented as a nested list of nullable booleans. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="18" column="17" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="property" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a7be782ef6de905372669bb2cffbedab9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespace_client_1_1_domain_1_1_services_1_1_settings_1_1_game_settings_service_1a8fc00b2e11a23adfb52c6337982b818a" kindref="member">GameMode</ref></type>
+        <definition>GameMode Client.Domain.Services.GameStorageManager.XML.GameStateXML.Mode</definition>
+        <argsstring></argsstring>
+        <name>Mode</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.Mode</qualifiedname>
+        <briefdescription>
+<para>The current game mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="23" column="21" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="property" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ab336970ecb84a97627d722cd3c6218a9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespace_client_1_1_domain_1_1_services_1_1_game_service_1a56791edfaff87576546dcf34241a21c2" kindref="member">GameStatus</ref></type>
+        <definition>GameStatus Client.Domain.Services.GameStorageManager.XML.GameStateXML.Status</definition>
+        <argsstring></argsstring>
+        <name>Status</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.Status</qualifiedname>
+        <briefdescription>
+<para>The current status of the game. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="28" column="23" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="property" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ad01f928edb9df9627f2bfc1e60811fff" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool?</type>
+        <definition>bool? Client.Domain.Services.GameStorageManager.XML.GameStateXML.ManPlayer</definition>
+        <argsstring></argsstring>
+        <name>ManPlayer</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.ManPlayer</qualifiedname>
+        <briefdescription>
+<para>Indicates which player is the human player, if applicable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="33" column="17" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="33" bodyend="33"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a4f3bbdc2c2635b8c9a8484fd8eafde9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Client.Domain.Services.GameStorageManager.XML.GameStateXML.GameStateXML</definition>
+        <argsstring>()</argsstring>
+        <name>GameStateXML</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.GameStateXML</qualifiedname>
+        <briefdescription>
+<para>Default constructor. Initializes the board as an empty list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="38" column="12" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a04e7d7cf612c3c8b4163d5ababcc762e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Client.Domain.Services.GameStorageManager.XML.GameStateXML.GameStateXML</definition>
+        <argsstring>(GameState state)</argsstring>
+        <name>GameStateXML</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.GameStateXML</qualifiedname>
+        <param>
+          <type><ref refid="struct_client_1_1_domain_1_1_services_1_1_game_service_1_1_game_state" kindref="compound">GameState</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of <ref refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l" kindref="compound">GameStateXML</ref> based on the given GameState. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The GameState to convert into a serializable format.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="47" column="12" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1aac216157f62e1acc09bd455dc4c707f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_client_1_1_domain_1_1_services_1_1_game_service_1_1_game_state" kindref="compound">GameState</ref></type>
+        <definition>GameState Client.Domain.Services.GameStorageManager.XML.GameStateXML.ToGameState</definition>
+        <argsstring>()</argsstring>
+        <name>ToGameState</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.ToGameState</qualifiedname>
+        <briefdescription>
+<para>Converts this <ref refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l" kindref="compound">GameStateXML</ref> instance back into a GameState object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The deserialized GameState object.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="59" column="22" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="59" bodyend="67"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a3d02b911cd24617f180c6d4dcc6d2c8a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; List&lt; bool?&gt; &gt;</type>
+        <definition>static List&lt; List&lt; bool?&gt; &gt; Client.Domain.Services.GameStorageManager.XML.GameStateXML.ConvertToNestedList</definition>
+        <argsstring>(bool?[,] array)</argsstring>
+        <name>ConvertToNestedList</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.ConvertToNestedList</qualifiedname>
+        <param>
+          <type>bool?</type>
+          <declname>array</declname>
+          <array>[,]</array>
+        </param>
+        <briefdescription>
+<para>Converts a two-dimensional nullable boolean array into a nested list. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The two-dimensional array to convert.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A nested list representing the array.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="74" column="25" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="74" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ade4f969fa76b559d43e8acd5eb3bd545" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>? bool[,]</type>
+        <definition>static ? bool[,] Client.Domain.Services.GameStorageManager.XML.GameStateXML.ConvertToMultidimensionalArray</definition>
+        <argsstring>(List&lt; List&lt; bool?&gt; &gt; list)</argsstring>
+        <name>ConvertToMultidimensionalArray</name>
+        <qualifiedname>Client.Domain.Services.GameStorageManager.XML.GameStateXML.ConvertToMultidimensionalArray</qualifiedname>
+        <param>
+          <type>List&lt; List&lt; bool?&gt; &gt;</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>Converts a nested list of nullable booleans into a two-dimensional array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The nested list to convert.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A two-dimensional array representing the list.</para>
+</simplesect>
+</para>
+<para>If the input list is empty or contains empty rows, the returned array will have zero dimensions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="97" column="25" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="97" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Serializable representation of the game state, used for <ref refid="namespace_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l" kindref="compound">XML</ref> storage. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" line="11" column="7" bodyfile="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/GameStateXML.cs" bodystart="12" bodyend="115"/>
+    <listofallmembers>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a461a22acccab8075a3a6932bef3d961a" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>Board</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ade4f969fa76b559d43e8acd5eb3bd545" prot="private" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>ConvertToMultidimensionalArray</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a3d02b911cd24617f180c6d4dcc6d2c8a" prot="private" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>ConvertToNestedList</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a4f3bbdc2c2635b8c9a8484fd8eafde9a" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>GameStateXML</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a04e7d7cf612c3c8b4163d5ababcc762e" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>GameStateXML</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ad01f928edb9df9627f2bfc1e60811fff" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>ManPlayer</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1a7be782ef6de905372669bb2cffbedab9" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>Mode</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1ab336970ecb84a97627d722cd3c6218a9" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>Status</name></member>
+      <member refid="class_client_1_1_domain_1_1_services_1_1_game_storage_manager_1_1_x_m_l_1_1_game_state_x_m_l_1aac216157f62e1acc09bd455dc4c707f7" prot="public" virt="non-virtual"><scope>Client::Domain::Services::GameStorageManager::XML::GameStateXML</scope><name>ToGameState</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_abf5cf92c3284083d2e9c9d0d446a175" kind="dir">
+    <compoundname>D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML</compoundname>
+    <innerfile refid="_game_state_x_m_l_8cs">GameStateXML.cs</innerfile>
+    <innerfile refid="_game_storage_x_m_l_manager_8cs">GameStorageXMLManager.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client.Domain/Services/GameStorageManager/XML/"/>
+  </compounddef>
+</doxygen>

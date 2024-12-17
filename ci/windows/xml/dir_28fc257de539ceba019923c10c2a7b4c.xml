@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.12.0" xml:lang="en-US">
+  <compounddef id="dir_28fc257de539ceba019923c10c2a7b4c" kind="dir">
+    <compoundname>D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client/obj/Debug/net8.0-windows</compoundname>
+    <innerdir refid="dir_88a6bbd02f3598926f0bd39187bf4b2d">D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client/obj/Debug/net8.0-windows/Views</innerdir>
+    <innerfile refid="_client_2obj_2_debug_2net8_80-windows_2_8_n_e_t_core_app_00_version_0av8_80_8_assembly_attributes_8cs">.NETCoreApp,Version=v8.0.AssemblyAttributes.cs</innerfile>
+    <innerfile refid="_app_8g_8cs">App.g.cs</innerfile>
+    <innerfile refid="_app_8g_8i_8cs">App.g.i.cs</innerfile>
+    <innerfile refid="_client_8_presentation_8_assembly_info_8cs">Client.Presentation.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation_8_global_usings_8g_8cs">Client.Presentation.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__bixkvugb__wpftmp_8_assembly_info_8cs">Client.Presentation_bixkvugb_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__bixkvugb__wpftmp_8_global_usings_8g_8cs">Client.Presentation_bixkvugb_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation___content_8g_8cs">Client.Presentation_Content.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation___content_8g_8i_8cs">Client.Presentation_Content.g.i.cs</innerfile>
+    <innerfile refid="_client_8_presentation__irft2quf__wpftmp_8_assembly_info_8cs">Client.Presentation_irft2quf_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__irft2quf__wpftmp_8_global_usings_8g_8cs">Client.Presentation_irft2quf_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__liuvxq5h__wpftmp_8_assembly_info_8cs">Client.Presentation_liuvxq5h_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__liuvxq5h__wpftmp_8_global_usings_8g_8cs">Client.Presentation_liuvxq5h_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__lw02kywn__wpftmp_8_assembly_info_8cs">Client.Presentation_lw02kywn_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__lw02kywn__wpftmp_8_global_usings_8g_8cs">Client.Presentation_lw02kywn_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__nyphpsk3__wpftmp_8_assembly_info_8cs">Client.Presentation_nyphpsk3_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__nyphpsk3__wpftmp_8_global_usings_8g_8cs">Client.Presentation_nyphpsk3_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__tkt0e0ma__wpftmp_8_assembly_info_8cs">Client.Presentation_tkt0e0ma_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__tkt0e0ma__wpftmp_8_global_usings_8g_8cs">Client.Presentation_tkt0e0ma_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__typ20tbv__wpftmp_8_assembly_info_8cs">Client.Presentation_typ20tbv_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__typ20tbv__wpftmp_8_global_usings_8g_8cs">Client.Presentation_typ20tbv_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_client_8_presentation__zhe34r2g__wpftmp_8_assembly_info_8cs">Client.Presentation_zhe34r2g_wpftmp.AssemblyInfo.cs</innerfile>
+    <innerfile refid="_client_8_presentation__zhe34r2g__wpftmp_8_global_usings_8g_8cs">Client.Presentation_zhe34r2g_wpftmp.GlobalUsings.g.cs</innerfile>
+    <innerfile refid="_generated_internal_type_helper_8g_8cs">GeneratedInternalTypeHelper.g.cs</innerfile>
+    <innerfile refid="_generated_internal_type_helper_8g_8i_8cs">GeneratedInternalTypeHelper.g.i.cs</innerfile>
+    <innerfile refid="_main_window_8g_8cs">MainWindow.g.cs</innerfile>
+    <innerfile refid="_main_window_8g_8i_8cs">MainWindow.g.i.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Subjects/7 semester/CSAD/Labs/csad2425ki406Zarytskyi07/Lab3-4/Client/Client/obj/Debug/net8.0-windows/"/>
+  </compounddef>
+</doxygen>
